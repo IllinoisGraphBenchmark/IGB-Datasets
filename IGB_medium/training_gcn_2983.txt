@@ -1,0 +1,21 @@
+Dataset_size: medium
+Model       : gcn
+Num_classes : 2983
+
+Epoch 00000 | Loss 265.1838 | Train Acc 0.6121 | Test Acc 0.6118 | Time 2077.98s | GPU 2616804.9 MB
+Epoch 00001 | Loss 226.7167 | Train Acc 0.6133 | Test Acc 0.6126 | Time 2041.13s | GPU 2619789.4 MB
+Epoch 00002 | Loss 225.6582 | Train Acc 0.5749 | Test Acc 0.5744 | Time 2180.38s | GPU 2619789.4 MB
+Epoch 00003 | Loss 237.5164 | Train Acc 0.6175 | Test Acc 0.6171 | Time 2106.92s | GPU 2619789.4 MB
+Epoch 00004 | Loss 222.8975 | Train Acc 0.6102 | Test Acc 0.6101 | Time 2846.23s | GPU 2619789.4 MB
+
+Total time taken:  11252.655960559845
+Train accuracy: 0.61 ± 0.02 	 Best: 61.7532%
+Test accuracy: 0.61 ± 0.02 	 Best: 61.7131%
+
+ -------- For debugging --------- 
+Parameters:  Namespace(batch_size=32768, dataset_size='medium', decay=0.001, device='0', dropout=0.5, epochs=5, fan_out='5,10', hidden_channels=256, in_memory=1, learning_rate=0.05, model='gcn', num_classes=2983, num_layers=2, num_workers=4, path='/mnt/nvme14/IGB260M/')
+Graph(num_nodes=10000000, num_edges=130077694,
+      ndata_schemes={'feat': Scheme(shape=(1024,), dtype=torch.float32), 'label': Scheme(shape=(), dtype=torch.int64), 'train_mask': Scheme(shape=(), dtype=torch.bool), 'val_mask': Scheme(shape=(), dtype=torch.bool), 'test_mask': Scheme(shape=(), dtype=torch.bool), 'features': Scheme(shape=(1024,), dtype=torch.float32), 'labels': Scheme(shape=(), dtype=torch.int64)}
+      edata_schemes={})
+Train accuracy:  [0.6121231913566589, 0.6132795214653015, 0.5748515129089355, 0.6175323128700256, 0.6101899743080139]
+Test accuracy:  [0.6118494868278503, 0.6125994920730591, 0.5744379758834839, 0.6171305179595947, 0.6101440191268921]
