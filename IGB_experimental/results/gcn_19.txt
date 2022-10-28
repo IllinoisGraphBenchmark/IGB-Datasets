@@ -1,0 +1,36 @@
+Dataset_size: experimental
+Model       : gcn
+Num_classes : 19
+
+Epoch 00000 | Loss 5.7484 | Train Acc 0.3621 | Test Acc 0.3587 | Time 8.76s | GPU 2183.7 MB
+Epoch 00001 | Loss 5.2016 | Train Acc 0.3999 | Test Acc 0.4005 | Time 8.13s | GPU 2190.7 MB
+Epoch 00002 | Loss 4.6036 | Train Acc 0.4168 | Test Acc 0.4187 | Time 9.13s | GPU 2198.1 MB
+Epoch 00003 | Loss 4.0980 | Train Acc 0.4416 | Test Acc 0.4455 | Time 9.24s | GPU 2198.1 MB
+Epoch 00004 | Loss 3.7321 | Train Acc 0.4918 | Test Acc 0.4970 | Time 9.02s | GPU 2198.1 MB
+Epoch 00005 | Loss 3.4447 | Train Acc 0.5490 | Test Acc 0.5520 | Time 9.40s | GPU 2198.1 MB
+Epoch 00006 | Loss 3.1869 | Train Acc 0.5863 | Test Acc 0.5910 | Time 9.06s | GPU 2199.0 MB
+Epoch 00007 | Loss 2.9901 | Train Acc 0.5964 | Test Acc 0.6000 | Time 8.83s | GPU 2199.0 MB
+Epoch 00008 | Loss 2.8419 | Train Acc 0.6069 | Test Acc 0.6086 | Time 9.39s | GPU 2199.0 MB
+Epoch 00009 | Loss 2.7184 | Train Acc 0.6228 | Test Acc 0.6238 | Time 9.36s | GPU 2199.0 MB
+Epoch 00010 | Loss 2.6012 | Train Acc 0.6318 | Test Acc 0.6378 | Time 9.19s | GPU 2199.0 MB
+Epoch 00011 | Loss 2.5042 | Train Acc 0.6366 | Test Acc 0.6406 | Time 9.71s | GPU 2199.0 MB
+Epoch 00012 | Loss 2.4287 | Train Acc 0.6393 | Test Acc 0.6442 | Time 8.52s | GPU 2199.0 MB
+Epoch 00013 | Loss 2.3655 | Train Acc 0.6440 | Test Acc 0.6507 | Time 8.95s | GPU 2199.0 MB
+Epoch 00014 | Loss 2.3136 | Train Acc 0.6478 | Test Acc 0.6526 | Time 9.11s | GPU 2199.0 MB
+Epoch 00015 | Loss 2.2675 | Train Acc 0.6509 | Test Acc 0.6585 | Time 9.66s | GPU 2199.0 MB
+Epoch 00016 | Loss 2.2243 | Train Acc 0.6540 | Test Acc 0.6600 | Time 9.78s | GPU 2199.0 MB
+Epoch 00017 | Loss 2.1896 | Train Acc 0.6585 | Test Acc 0.6658 | Time 8.93s | GPU 2199.0 MB
+Epoch 00018 | Loss 2.1576 | Train Acc 0.6629 | Test Acc 0.6701 | Time 9.55s | GPU 2199.0 MB
+Epoch 00019 | Loss 2.1271 | Train Acc 0.6668 | Test Acc 0.6729 | Time 9.29s | GPU 2199.0 MB
+
+Total time taken:  183.075035572052
+Train accuracy: 0.58 ± 0.10 	 Best: 66.6750%
+Test accuracy: 0.58 ± 0.10 	 Best: 67.2900%
+
+ -------- For debugging --------- 
+Parameters:  Namespace(batch_size=32768, dataset_size='experimental', decay=0.001, device='0', dropout=0.2, epochs=20, fan_out='5,10', hidden_channels=16, in_memory=1, learning_rate=0.01, model='gcn', modelpath='gcn_19.pt', num_classes=19, num_layers=2, num_workers=4, path='/mnt/nvme14/IGB260M/')
+Graph(num_nodes=100000, num_edges=547416,
+      ndata_schemes={'feat': Scheme(shape=(1024,), dtype=torch.float32), 'label': Scheme(shape=(), dtype=torch.int64), 'train_mask': Scheme(shape=(), dtype=torch.bool), 'val_mask': Scheme(shape=(), dtype=torch.bool), 'test_mask': Scheme(shape=(), dtype=torch.bool), 'features': Scheme(shape=(1024,), dtype=torch.float32), 'labels': Scheme(shape=(), dtype=torch.int64)}
+      edata_schemes={})
+Train accuracy:  [0.3620833456516266, 0.3999166786670685, 0.41679999232292175, 0.44161665439605713, 0.49175000190734863, 0.5490333437919617, 0.5862833261489868, 0.5963500142097473, 0.6068500280380249, 0.6227666735649109, 0.6317833065986633, 0.6366000175476074, 0.6392833590507507, 0.6439666748046875, 0.647849977016449, 0.6509000062942505, 0.6540166735649109, 0.6585000157356262, 0.662850022315979, 0.6667500138282776]
+Test accuracy:  [0.35874998569488525, 0.40049999952316284, 0.41874998807907104, 0.44554999470710754, 0.4969500005245209, 0.552049994468689, 0.5909500122070312, 0.6000000238418579, 0.6085500121116638, 0.6237999796867371, 0.6377500295639038, 0.6406499743461609, 0.6442000269889832, 0.6506500244140625, 0.6525999903678894, 0.6585000157356262, 0.6600000262260437, 0.6657999753952026, 0.6700500249862671, 0.6729000210762024]

@@ -7,6 +7,8 @@ from sys import getsizeof
 import argparse
 
 import torch
+torch.manual_seed(0)
+dgl.seed(0)
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
@@ -452,7 +454,7 @@ def track_acc(g, args, model_type):
     best_test_acc = 0
     log_every = 1
     training_start = time.time()
-    for epoch in tqdm(range(num_epochs)):
+    for epoch in (range(num_epochs)):
         # Loop over the dataloader to sample the computation dependency graph as a list of
         # blocks.
         epoch_loss = 0
@@ -506,6 +508,7 @@ def track_acc(g, args, model_type):
         )
         test_accuracy.append(test_acc.item())
         train_accuracy.append(train_acc.item())
+        # torch.save(model.state_dict(), args.modelpath)
     print()
     print("Total time taken: ", time.time() - training_start)
 
@@ -517,8 +520,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--path', type=str, default='/mnt/nvme14/IGB260M/')
+
+    parser.add_argument('--modelpath', type=str, default='gcn_19.pt')
+
     parser.add_argument('--dataset_size', type=str, default='experimental', choices=['experimental', 'small', 'medium', 'large', 'full'])
-    parser.add_argument('--num_classes', type=int, default=2983, choices=[19, 2983])
+    parser.add_argument('--num_classes', type=int, default=19, choices=[19, 2983])
     parser.add_argument('--hidden_channels', type=int, default=16)
     parser.add_argument('--fan_out', type=str, default='5,10')
     parser.add_argument('--num_layers', type=int, default=2)

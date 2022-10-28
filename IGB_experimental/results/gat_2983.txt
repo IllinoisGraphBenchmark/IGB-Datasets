@@ -1,0 +1,36 @@
+Dataset_size: experimental
+Model       : gat
+Num_classes : 2983
+
+Epoch 00000 | Loss 15.9658 | Train Acc 0.4183 | Test Acc 0.4218 | Time 13.14s | GPU 17578.1 MB
+Epoch 00001 | Loss 15.7592 | Train Acc 0.4411 | Test Acc 0.4426 | Time 13.00s | GPU 17578.1 MB
+Epoch 00002 | Loss 15.2901 | Train Acc 0.4421 | Test Acc 0.4440 | Time 13.53s | GPU 17578.1 MB
+Epoch 00003 | Loss 14.3235 | Train Acc 0.3720 | Test Acc 0.3743 | Time 13.92s | GPU 17578.7 MB
+Epoch 00004 | Loss 12.7760 | Train Acc 0.2617 | Test Acc 0.2614 | Time 13.43s | GPU 17578.7 MB
+Epoch 00005 | Loss 10.7727 | Train Acc 0.1078 | Test Acc 0.1106 | Time 14.93s | GPU 17578.7 MB
+Epoch 00006 | Loss 8.7546 | Train Acc 0.1777 | Test Acc 0.1789 | Time 15.82s | GPU 17578.7 MB
+Epoch 00007 | Loss 7.2667 | Train Acc 0.3366 | Test Acc 0.3379 | Time 13.80s | GPU 17578.7 MB
+Epoch 00008 | Loss 6.3446 | Train Acc 0.3143 | Test Acc 0.3145 | Time 13.94s | GPU 17578.7 MB
+Epoch 00009 | Loss 5.9726 | Train Acc 0.2569 | Test Acc 0.2560 | Time 13.84s | GPU 17578.7 MB
+Epoch 00010 | Loss 6.0294 | Train Acc 0.2359 | Test Acc 0.2343 | Time 14.73s | GPU 17591.3 MB
+Epoch 00011 | Loss 6.0710 | Train Acc 0.2365 | Test Acc 0.2348 | Time 14.04s | GPU 17591.3 MB
+Epoch 00012 | Loss 5.8276 | Train Acc 0.2513 | Test Acc 0.2502 | Time 15.07s | GPU 17591.3 MB
+Epoch 00013 | Loss 5.5400 | Train Acc 0.3224 | Test Acc 0.3246 | Time 14.62s | GPU 17591.3 MB
+Epoch 00014 | Loss 5.4303 | Train Acc 0.3956 | Test Acc 0.3985 | Time 14.11s | GPU 17591.3 MB
+Epoch 00015 | Loss 5.3347 | Train Acc 0.3958 | Test Acc 0.4008 | Time 14.72s | GPU 17591.3 MB
+Epoch 00016 | Loss 5.1460 | Train Acc 0.3749 | Test Acc 0.3801 | Time 14.00s | GPU 17591.3 MB
+Epoch 00017 | Loss 4.9593 | Train Acc 0.3636 | Test Acc 0.3682 | Time 14.01s | GPU 17591.3 MB
+Epoch 00018 | Loss 4.8005 | Train Acc 0.3611 | Test Acc 0.3633 | Time 14.15s | GPU 17591.3 MB
+Epoch 00019 | Loss 4.6527 | Train Acc 0.3744 | Test Acc 0.3776 | Time 14.48s | GPU 17591.3 MB
+
+Total time taken:  283.3878562450409
+Train accuracy: 0.32 ± 0.09 	 Best: 44.2133%
+Test accuracy: 0.32 ± 0.09 	 Best: 44.4000%
+
+ -------- For debugging --------- 
+Parameters:  Namespace(batch_size=32768, dataset_size='experimental', decay=0.001, device='0', dropout=0.2, epochs=20, fan_out='5,10', hidden_channels=16, in_memory=1, learning_rate=0.01, model='gat', modelpath='gat_2983.pt', num_classes=2983, num_layers=2, num_workers=4, path='/mnt/nvme14/IGB260M/')
+Graph(num_nodes=100000, num_edges=547416,
+      ndata_schemes={'feat': Scheme(shape=(1024,), dtype=torch.float32), 'label': Scheme(shape=(), dtype=torch.int64), 'train_mask': Scheme(shape=(), dtype=torch.bool), 'val_mask': Scheme(shape=(), dtype=torch.bool), 'test_mask': Scheme(shape=(), dtype=torch.bool), 'features': Scheme(shape=(1024,), dtype=torch.float32), 'labels': Scheme(shape=(), dtype=torch.int64)}
+      edata_schemes={})
+Train accuracy:  [0.4183333218097687, 0.44111666083335876, 0.4421333372592926, 0.3719833195209503, 0.26170000433921814, 0.10778333246707916, 0.17773333191871643, 0.33656665682792664, 0.3142666518688202, 0.256850004196167, 0.23591665923595428, 0.23653332889080048, 0.2513499855995178, 0.32241666316986084, 0.39559999108314514, 0.39578333497047424, 0.3749000132083893, 0.3635833263397217, 0.361133337020874, 0.3743666708469391]
+Test accuracy:  [0.42179998755455017, 0.44255000352859497, 0.4440000057220459, 0.3743000030517578, 0.2614000141620636, 0.11055000126361847, 0.17890000343322754, 0.3379499912261963, 0.31450000405311584, 0.2560499906539917, 0.23434999585151672, 0.23475000262260437, 0.2502000033855438, 0.3246000111103058, 0.398499995470047, 0.4007999897003174, 0.38005000352859497, 0.36820000410079956, 0.36329999566078186, 0.37755000591278076]
