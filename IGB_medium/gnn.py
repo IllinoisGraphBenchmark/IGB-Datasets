@@ -52,7 +52,7 @@ class IGL260MDataset(object):
     @property
     def paper_label(self) -> np.ndarray:
         if self.num_classes == 19:
-            path = osp.join(self.dir, self.size, 'processed', 'paper', 'node_label_19.npy')
+            path = osp.join(self.dir, self.size, 'processed', 'paper', 'node_label_19_test.npy')
         else:
             path = osp.join(self.dir, self.size, 'processed', 'paper', 'node_label_2K.npy')
         if self.in_memory:
@@ -504,6 +504,7 @@ def track_acc(g, args, model_type):
         )
         test_accuracy.append(test_acc.item())
         train_accuracy.append(train_acc.item())
+        torch.save(model.state_dict(), args.modelpath)
     print()
     print("Total time taken: ", time.time() - training_start)
 
@@ -515,6 +516,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--path', type=str, default='/mnt/nvme14/IGB260M/')
+    parser.add_argument('--modelpath', type=str, default='gsage_2983.pt')
     parser.add_argument('--dataset_size', type=str, default='medium', choices=['experimental', 'small', 'medium', 'large', 'full'])
     parser.add_argument('--num_classes', type=int, default=2983, choices=[19, 2983])
     parser.add_argument('--hidden_channels', type=int, default=256)
@@ -540,7 +542,7 @@ if __name__ == '__main__':
     print("Num_classes : " + str(args.num_classes))
     print()
     
-    device = f'cuda:0' if torch.cuda.is_available() else 'cpu'
+    device = f'cuda:2' if torch.cuda.is_available() else 'cpu'
 
     dataset = IGL260M(args)
     g = dataset[0]

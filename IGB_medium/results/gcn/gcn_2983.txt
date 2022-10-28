@@ -1,0 +1,21 @@
+Dataset_size: medium
+Model       : sage
+Num_classes : 2983
+
+Epoch 00000 | Loss 260.5816 | Train Acc 0.6192 | Test Acc 0.6187 | Time 1067.84s | GPU 1550569.0 MB
+Epoch 00001 | Loss 235.9536 | Train Acc 0.6276 | Test Acc 0.6271 | Time 1034.19s | GPU 1551884.1 MB
+Epoch 00002 | Loss 235.1886 | Train Acc 0.6243 | Test Acc 0.6240 | Time 1032.87s | GPU 1551884.1 MB
+Epoch 00003 | Loss 235.5055 | Train Acc 0.6137 | Test Acc 0.6132 | Time 1031.04s | GPU 1553128.4 MB
+Epoch 00004 | Loss 234.7401 | Train Acc 0.6232 | Test Acc 0.6224 | Time 1034.22s | GPU 1554254.3 MB
+
+Total time taken:  5200.234590053558
+Train accuracy: 0.62 ± 0.00 	 Best: 62.7570%
+Test accuracy: 0.62 ± 0.00 	 Best: 62.7085%
+
+ -------- For debugging --------- 
+Parameters:  Namespace(batch_size=32768, dataset_size='medium', decay=0.001, device='0', dropout=0.5, epochs=5, fan_out='5,10', hidden_channels=256, in_memory=1, learning_rate=0.05, model='sage', modelpath='gsage_2983.pt', num_classes=2983, num_layers=2, num_workers=4, path='/mnt/nvme14/IGB260M/')
+Graph(num_nodes=10000000, num_edges=130077694,
+      ndata_schemes={'feat': Scheme(shape=(1024,), dtype=torch.float32), 'label': Scheme(shape=(), dtype=torch.int64), 'train_mask': Scheme(shape=(), dtype=torch.bool), 'val_mask': Scheme(shape=(), dtype=torch.bool), 'test_mask': Scheme(shape=(), dtype=torch.bool), 'features': Scheme(shape=(1024,), dtype=torch.float32), 'labels': Scheme(shape=(), dtype=torch.int64)}
+      edata_schemes={})
+Train accuracy:  [0.6192150115966797, 0.6275696754455566, 0.6242653131484985, 0.6136698126792908, 0.6232050061225891]
+Test accuracy:  [0.6186965107917786, 0.6270849704742432, 0.623986005783081, 0.6132364869117737, 0.6224430203437805]
