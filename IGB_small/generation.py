@@ -16,17 +16,21 @@ if __name__ == '__main__':
         paper_labels = np.load(f, allow_pickle=True).tolist()
     with open('/mnt/nvme12/paper_labels_2K_classes.npy', 'rb') as f:  
         paper_labels_large = np.load(f, allow_pickle=True).tolist()
-    papers_with_labels = set(list(paper_labels.keys()))
+    with open('/mnt/nvme6/paper_ids_classes_292.npy', 'rb') as f:  
+        paper_labels_292 = np.load(f, allow_pickle=True).tolist()
+    
+    papers_with_labels = set(list(paper_labels.keys())).intersection(set(list(paper_labels_292.keys())))
 
     # paper features
     path = '/mnt/nvme13/paper_emb_part_2/'
-    files = [join(path,f) for f in listdir(path) if (isfile(join(path, f)))]
+    files = [join(path,f) for f in listdir(path) if (isfile(join(path, f)))][::-1]
     path = '/mnt/nvme12/paper_emb_part_1/'
-    files.extend([join(path,f) for f in listdir(path) if (isfile(join(path, f)))])
+    files.extend([join(path,f) for f in listdir(path) if (isfile(join(path, f)))][::-1])
     print(files)
 
     exp_feat_with_labels = np.memmap('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/node_feat_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES,1024))
     exp_labels_19 = np.memmap('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/node_label_19_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES))
+    exp_labels_292 = np.memmap('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/node_label_292_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES))
     exp_labels_2K = np.memmap('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/node_label_2K_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES))
     fp = open("/mnt/nvme6/gnndataset/notebooks/node_degree_map.pickle", "rb")
     node_degree = pickle.load(fp)
@@ -39,11 +43,12 @@ if __name__ == '__main__':
         for paper_id, feats in paper_feats:
             if paper_id in papers_with_labels:
                 if paper_id in node_degree:
-                    if node_degree[paper_id] > 400:
+                    if node_degree[paper_id] > 200:
                         paper_id_idx_mapping[paper_id] = idx
                         exp_feat_with_labels[idx] = feats
                         exp_labels_19[idx] = paper_labels[paper_id]
                         exp_labels_2K[idx] = paper_labels_large[paper_id]
+                        exp_labels_292[idx] = paper_labels_292[paper_id]
                         idx += 1
             if idx == NUM_NODES:
                 break
@@ -53,9 +58,13 @@ if __name__ == '__main__':
 
     np.save('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/node_feat.npy', exp_feat_with_labels)
     np.save('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/node_label_19.npy', exp_labels_19)
+    np.save('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/node_label_292.npy', exp_labels_292)
     np.save('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/node_label_2K.npy', exp_labels_2K)
     del paper_labels
     del paper_labels_large
+
+    with open('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/paper_id_index_mapping.npy', 'wb') as f:
+        np.save(f, paper_id_idx_mapping) 
 
     # paper cites paper
     paper_edges = np.load('/mnt/nvme12/final_edges.npy', mmap_mode = 'r')
@@ -64,9 +73,6 @@ if __name__ == '__main__':
             exp_edges.append(np.array([paper_id_idx_mapping[edge[0]], paper_id_idx_mapping[edge[1]]]))
             exp_edges.append(np.array([paper_id_idx_mapping[edge[1]], paper_id_idx_mapping[edge[0]]]))
     print("Finished paper edges")
-
-    with open('/mnt/nvme14/IGB260M/' + SIZE + '/processed/paper/paper_id_index_mapping.npy', 'wb') as f:
-        np.save(f, paper_id_idx_mapping) 
 
     del paper_id_idx_mapping
 

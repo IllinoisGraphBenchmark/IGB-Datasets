@@ -1,0 +1,37 @@
+Setting the default backend to "pytorch". You can change it in the ~/.dgl/config.json file or export the DGLBACKEND environment variable.  Valid options are: pytorch, mxnet, tensorflow (all lowercase)
+Dataset_size: small
+Model       : gcn
+Num_classes : 2983
+
+Epoch 00000 | Loss 94.2843 | Train Acc 0.3253 | Test Acc 0.3260 | Time 117.04s | GPU 175655.1 MB
+Epoch 00001 | Loss 36.5706 | Train Acc 0.5596 | Test Acc 0.5605 | Time 114.70s | GPU 176230.0 MB
+Epoch 00002 | Loss 27.9614 | Train Acc 0.6063 | Test Acc 0.6068 | Time 116.35s | GPU 176245.8 MB
+Epoch 00003 | Loss 25.1466 | Train Acc 0.6269 | Test Acc 0.6276 | Time 116.32s | GPU 176245.8 MB
+Epoch 00004 | Loss 24.1449 | Train Acc 0.6333 | Test Acc 0.6334 | Time 114.96s | GPU 176250.9 MB
+Epoch 00005 | Loss 23.6484 | Train Acc 0.6371 | Test Acc 0.6378 | Time 115.93s | GPU 176294.3 MB
+Epoch 00006 | Loss 23.3273 | Train Acc 0.6393 | Test Acc 0.6397 | Time 114.92s | GPU 176294.3 MB
+Epoch 00007 | Loss 23.0910 | Train Acc 0.6394 | Test Acc 0.6400 | Time 115.13s | GPU 176294.3 MB
+Epoch 00008 | Loss 22.9209 | Train Acc 0.6399 | Test Acc 0.6407 | Time 115.70s | GPU 176294.3 MB
+Epoch 00009 | Loss 22.7936 | Train Acc 0.6416 | Test Acc 0.6429 | Time 117.90s | GPU 176294.3 MB
+Epoch 00010 | Loss 22.6689 | Train Acc 0.6415 | Test Acc 0.6423 | Time 116.47s | GPU 176294.3 MB
+Epoch 00011 | Loss 22.6046 | Train Acc 0.6411 | Test Acc 0.6420 | Time 116.34s | GPU 176294.3 MB
+Epoch 00012 | Loss 22.5288 | Train Acc 0.6397 | Test Acc 0.6403 | Time 118.48s | GPU 176354.6 MB
+Epoch 00013 | Loss 22.4997 | Train Acc 0.6408 | Test Acc 0.6414 | Time 119.31s | GPU 176365.9 MB
+Epoch 00014 | Loss 22.4184 | Train Acc 0.6384 | Test Acc 0.6390 | Time 117.44s | GPU 176365.9 MB
+Epoch 00015 | Loss 22.4080 | Train Acc 0.6423 | Test Acc 0.6432 | Time 117.19s | GPU 176365.9 MB
+Epoch 00016 | Loss 22.3526 | Train Acc 0.6387 | Test Acc 0.6403 | Time 118.36s | GPU 176365.9 MB
+Epoch 00017 | Loss 22.3505 | Train Acc 0.6392 | Test Acc 0.6402 | Time 118.48s | GPU 176365.9 MB
+Epoch 00018 | Loss 22.2980 | Train Acc 0.6385 | Test Acc 0.6392 | Time 117.11s | GPU 176365.9 MB
+Epoch 00019 | Loss 22.2667 | Train Acc 0.6353 | Test Acc 0.6363 | Time 116.10s | GPU 176365.9 MB
+
+Total time taken:  2334.2872824668884
+Train accuracy: 0.62 ± 0.07 	 Best: 64.2265%
+Test accuracy: 0.62 ± 0.07 	 Best: 64.3235%
+
+ -------- For debugging --------- 
+Parameters:  Namespace(batch_size=32768, dataset_size='small', decay=0.001, device='0', dropout=0.2, epochs=20, fan_out='5,10', hidden_channels=16, in_memory=1, learning_rate=0.01, model='gcn', modelpath='gcn_2983.pt', num_classes=2983, num_layers=2, num_workers=4, path='/mnt/nvme14/IGB260M/')
+Graph(num_nodes=1000000, num_edges=47926676,
+      ndata_schemes={'feat': Scheme(shape=(1024,), dtype=torch.float32), 'label': Scheme(shape=(), dtype=torch.int64), 'train_mask': Scheme(shape=(), dtype=torch.bool), 'val_mask': Scheme(shape=(), dtype=torch.bool), 'test_mask': Scheme(shape=(), dtype=torch.bool), 'features': Scheme(shape=(1024,), dtype=torch.float32), 'labels': Scheme(shape=(), dtype=torch.int64)}
+      edata_schemes={})
+Train accuracy:  [0.32532501220703125, 0.5595566630363464, 0.6063116788864136, 0.626895010471344, 0.6333083510398865, 0.6371099948883057, 0.6392966508865356, 0.639365017414093, 0.6398816704750061, 0.6416066884994507, 0.6415416598320007, 0.6411466598510742, 0.6396916508674622, 0.6408083438873291, 0.638408362865448, 0.6422650218009949, 0.638741672039032, 0.6392300128936768, 0.6384633183479309, 0.6353316903114319]
+Test accuracy:  [0.32598501443862915, 0.56045001745224, 0.606784999370575, 0.627590000629425, 0.6333900094032288, 0.6377649903297424, 0.6397449970245361, 0.639989972114563, 0.6407049894332886, 0.6429049968719482, 0.6422799825668335, 0.641979992389679, 0.6403449773788452, 0.6414300203323364, 0.6390399932861328, 0.6432350277900696, 0.6402599811553955, 0.6402350068092346, 0.6392499804496765, 0.6362800002098083]

@@ -1,0 +1,5 @@
+Dataset_size: small
+Model       : gat
+Num_classes : 2983
+
+Epoch 00000 | Loss 106.8207 | Train Acc 0.2465 | Test Acc 0.2460 | Time 124.63s | GPU 582507.0 MB
