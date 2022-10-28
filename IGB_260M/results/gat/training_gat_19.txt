@@ -1,0 +1,11 @@
+Dataset_size: full
+Model       : gat
+Num_classes : 19
+
+Graph(num_nodes=268681203, num_edges=3995777033,
+      ndata_schemes={'feat': Scheme(shape=(1024,), dtype=torch.float32), 'label': Scheme(shape=(), dtype=torch.int64), 'train_mask': Scheme(shape=(), dtype=torch.bool), 'val_mask': Scheme(shape=(), dtype=torch.bool), 'test_mask': Scheme(shape=(), dtype=torch.bool)}
+      edata_schemes={})
+Epoch 00000 | Loss 3448.5298 | Train Acc 0.6386 | Test Acc 0.5526 | Time 49110.08s | GPU 18700155.5 MB
+Epoch 00001 | Loss 3134.6494 | Train Acc 0.6410 | Test Acc 0.5546 | Time 48051.41s | GPU 18758517.6 MB
+Epoch 00002 | Loss 3114.1616 | Train Acc 0.6415 | Test Acc 0.5549 | Time 48269.97s | GPU 18769648.2 MB
+Epoch 00003 | Loss 3108.5298 | Train Acc 0.6417 | Test Acc 0.5551 | Time 50383.59s | GPU 18769648.2 MB

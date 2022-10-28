@@ -525,11 +525,9 @@ if __name__ == '__main__':
     parser.add_argument('--batch_size', type=int, default=2048*16)
     parser.add_argument('--dropout', type=float, default=0.2)
 
+    parser.add_argument('--epochs', type=int, default=5)
 
-    parser.add_argument('--epochs', type=int, default=20)
-
-    parser.add_argument('--model', type=str, default='gcn',
-                        choices=['gat', 'sage', 'gcn'])
+    parser.add_argument('--model', type=str, default='gat', choices=['gat', 'sage', 'gcn'])
     parser.add_argument('--in_memory', type=int, default=1)
     parser.add_argument('--device', type=str, default='0')
     args = parser.parse_args()
@@ -539,7 +537,7 @@ if __name__ == '__main__':
     print("Num_classes : " + str(args.num_classes))
     print()
     
-    device = f'cuda:2' if torch.cuda.is_available() else 'cpu'
+    device = f'cuda:1' if torch.cuda.is_available() else 'cpu'
 
     dataset = IGL260M(args)
     g = dataset[0]

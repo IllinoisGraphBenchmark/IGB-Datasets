@@ -9,3 +9,5 @@ Epoch 00000 | Loss 3807.5940 | Train Acc 0.5593 | Test Acc 0.4846 | Time 51229.2
 Epoch 00001 | Loss 3371.0046 | Train Acc 0.5526 | Test Acc 0.4790 | Time 59039.69s | GPU 28591401.9 MB
 Epoch 00002 | Loss 3340.6670 | Train Acc 0.5567 | Test Acc 0.4826 | Time 37378.76s | GPU 28634628.9 MB
 Epoch 00003 | Loss 3330.0193 | Train Acc 0.5578 | Test Acc 0.4835 | Time 63669.29s | GPU 28634628.9 MB
+Epoch 00004 | Loss 3324.1328 | Train Acc 0.5572 | Test Acc 0.4831 | Time 41833.04s | GPU 28634628.9 MB
+Epoch 00005 | Loss 3319.9683 | Train Acc 0.5605 | Test Acc 0.4859 | Time 313344.49s | GPU 28634628.9 MB

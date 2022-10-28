@@ -1,0 +1,12 @@
+Dataset_size: full
+Model       : sage
+Num_classes : 19
+
+Graph(num_nodes=268681203, num_edges=3995777033,
+      ndata_schemes={'feat': Scheme(shape=(1024,), dtype=torch.float32), 'label': Scheme(shape=(), dtype=torch.int64), 'train_mask': Scheme(shape=(), dtype=torch.bool), 'val_mask': Scheme(shape=(), dtype=torch.bool), 'test_mask': Scheme(shape=(), dtype=torch.bool)}
+      edata_schemes={})
+Epoch 00000 | Loss 3885.3640 | Train Acc 0.6316 | Test Acc 0.5464 | Time 312441.77s | GPU 18672755.1 MB
+Epoch 00001 | Loss 3493.6958 | Train Acc 0.6343 | Test Acc 0.5488 | Time 248286.26s | GPU 18701009.5 MB
+Epoch 00002 | Loss 3463.6162 | Train Acc 0.6349 | Test Acc 0.5493 | Time 97398.77s | GPU 18706731.7 MB
+Epoch 00003 | Loss 3454.8025 | Train Acc 0.6351 | Test Acc 0.5495 | Time 174195.90s | GPU 18722668.3 MB
+Epoch 00004 | Loss 3450.6362 | Train Acc 0.6351 | Test Acc 0.5495 | Time 35797.63s | GPU 18743783.3 MB
