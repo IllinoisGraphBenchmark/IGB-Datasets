@@ -1,0 +1,7 @@
+Dataset_size: large
+Model       : sage
+Num_classes : 2983
+
+Graph(num_nodes=100000000, num_edges=1323571364,
+      ndata_schemes={'feat': Scheme(shape=(1024,), dtype=torch.float32), 'label': Scheme(shape=(), dtype=torch.int64), 'train_mask': Scheme(shape=(), dtype=torch.bool), 'val_mask': Scheme(shape=(), dtype=torch.bool), 'test_mask': Scheme(shape=(), dtype=torch.bool)}
+      edata_schemes={})

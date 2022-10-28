@@ -1,4 +1,0 @@
-Dataset_size: large
-Model       : gcn
-Num_classes : 19
-

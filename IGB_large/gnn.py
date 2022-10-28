@@ -36,37 +36,43 @@ class IGL260MDataset(object):
 
     @property
     def paper_feat(self) -> np.ndarray:
-        path = osp.join(self.dir, self.size, 'processed', 'paper', 'node_feat.npy')
-        if self.in_memory:
-            return np.load(path)
-        else:
-            return np.load(path, mmap_mode='r')
+        path = '/mnt/nvme16/node_feat.npy'
+        node_features = np.memmap(path, dtype='float32', mode='r',  shape=(100000000,1024))
+        # node_features_unlabelled =  np.memmap('/mnt/nvme14/IGB260M_part_1/processed/paper/node_feat.npy', dtype='float32', mode='r',  shape=(111005234,1024))
+        # node_features[157675969:,:] = node_features_unlabelled
+        return node_features
 
     @property
     def paper_label(self) -> np.ndarray:
         if self.num_classes == 19:
-            path = osp.join(self.dir, self.size, 'processed', 'paper', 'node_label_19.npy')
+            path = '/mnt/nvme15/IGB260M_part_2/processed/paper/node_label_19.npy'
         else:
-            path = osp.join(self.dir, self.size, 'processed', 'paper', 'node_label_2K.npy')
-        if self.in_memory:
-            return np.load(path)
-        else:
-            return np.load(path, mmap_mode='r')
+            path = '/mnt/nvme15/IGB260M_part_2/processed/paper/node_label_2K.npy'
+
+        
+        node_features = np.memmap(path, dtype='float32', mode='r',  shape=(100000000))
+        return node_features
+        # if self.in_memory:
+        #     return np.load(path)
+        # else:
+        #     return np.load(path, mmap_mode='r')
 
     @property
     def paper_edge(self) -> np.ndarray:
-        path = osp.join(self.dir, self.size, 'processed', 'paper__cites__paper', 'edge_index.npy')
-        if self.in_memory:
-            return np.load(path)
-        else:
-            return np.load(path, mmap_mode='r')
+        # path = osp.join(self.dir, self.size, 'processed', 'paper__cites__paper', 'edge_index.npy')
+        path = '/mnt/nvme7/large/processed/paper__cites__paper/edge_index.npy'
+        return np.load(path, mmap_mode='r')
+        # if self.in_memory:
+        #     return np.load(path)
+        # else:
+        #     return np.load(path, mmap_mode='r')
 
 class IGL260M(DGLDataset):
     def __init__(self, args):
         super().__init__(name='IGB260M')
 
     def process(self):
-        dataset = IGL260MDataset(root=args.path, size=args.dataset_size, in_memory=args.in_memory, classes=args.num_classes)
+        dataset = IGL260MDataset(root='/mnt/nvme14/IGB260M/', size=args.dataset_size, in_memory=args.in_memory, classes=args.num_classes)
         node_features = torch.from_numpy(dataset.paper_feat)
         node_edges = torch.from_numpy(dataset.paper_edge)
         node_labels = torch.from_numpy(dataset.paper_label).to(torch.long)
@@ -497,6 +503,7 @@ def track_acc(g, args, model_type):
         )
         test_accuracy.append(test_acc.item())
         train_accuracy.append(train_acc.item())
+        torch.save(model.state_dict(), args.modelpath)
     print()
     print("Total time taken: ", time.time() - training_start)
 
@@ -507,23 +514,24 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--path', type=str, default='/mnt/nvme5/')
+    parser.add_argument('--path', type=str, default='/mnt/nvme14/IGB260M/')
+
+    parser.add_argument('--modelpath', type=str, default='gsage_2983.pt')
+
     parser.add_argument('--dataset_size', type=str, default='large', choices=['experimental', 'small', 'medium', 'large', 'full'])
     parser.add_argument('--num_classes', type=int, default=19, choices=[19, 2983])
     parser.add_argument('--hidden_channels', type=int, default=256)
     parser.add_argument('--fan_out', type=str, default='5,10')
     parser.add_argument('--num_layers', type=int, default=2)
-    parser.add_argument('--learning_rate', type=int, default=0.05)
-    parser.add_argument('--decay', type=int, default=0.001)
-    parser.add_argument('--num_workers', type=int, default=4)
+    parser.add_argument('--learning_rate', type=int, default=0.001)
+    parser.add_argument('--decay', type=int, default=0.0001)
+    parser.add_argument('--num_workers', type=int, default=2)
     parser.add_argument('--batch_size', type=int, default=2048*16)
-    parser.add_argument('--dropout', type=float, default=0.5)
+    parser.add_argument('--dropout', type=float, default=0.2)
 
+    parser.add_argument('--epochs', type=int, default=3)
 
-    parser.add_argument('--epochs', type=int, default=5)
-
-    parser.add_argument('--model', type=str, default='gcn',
-                        choices=['gat', 'sage', 'gcn'])
+    parser.add_argument('--model', type=str, default='gat', choices=['gat', 'sage', 'gcn'])
     parser.add_argument('--in_memory', type=int, default=0)
     parser.add_argument('--device', type=str, default='0')
     args = parser.parse_args()
@@ -533,10 +541,11 @@ if __name__ == '__main__':
     print("Num_classes : " + str(args.num_classes))
     print()
     
-    device = f'cuda:1' if torch.cuda.is_available() else 'cpu'
+    device = f'cuda:2' if torch.cuda.is_available() else 'cpu'
 
     dataset = IGL260M(args)
     g = dataset[0]
+    print(g)
 
     best_test_acc, train_acc, test_acc = track_acc(g, args, model_type=args.model)
 
