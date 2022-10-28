@@ -43,10 +43,6 @@ class IGL260MDataset(object):
             return np.load(path)
         else:
             return np.load(path, mmap_mode='r')
-        # if self.in_memory:
-        #     return np.array(np.memmap(path, dtype='float32', mode='r',  shape=(num_nodes,feat_dim)))
-        # else:
-        #     return np.memmap(path, dtype='float32', mode='r',  shape=(num_nodes,feat_dim))
 
     @property
     def paper_label(self) -> np.ndarray:
@@ -58,10 +54,6 @@ class IGL260MDataset(object):
             return np.load(path)
         else:
             return np.load(path, mmap_mode='r')
-        # if self.in_memory:
-        #     return np.array(np.memmap(path, dtype='float32', mode='r',  shape=(num_nodes)))[:]
-        # else:
-        #     return np.memmap(path, dtype='float32', mode='r',  shape=(num_nodes))
 
     @property
     def paper_edge(self) -> np.ndarray:
