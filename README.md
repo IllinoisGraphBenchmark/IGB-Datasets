@@ -7,7 +7,7 @@
 ## Abstract
 
 In this work, we introduce the **Illinois Graph Benchmark (IGB)**, a collection of enormous graph datasets for node classification tasks. IGB incorporates the most extensive real-world homogeneous graph with 260 million nodes and more than three billion edges, including 220 million labeled nodes for node classification tasks. 
-Compared to the largest graph dataset publicly available, IGB provides over 162x more labeled data for deep learning practitioners and developers to create and evaluate the model with higher accuracy. 
+Compared to the largest graph dataset publicly available, IGB provides over 162x more labeled data that MAG240M for deep learning practitioners and developers to create and evaluate the model with higher accuracy. 
 IGB captures relational information in the [Microsoft Academic Graph](https://www.microsoft.com/en-us/research/project/microsoft-academic-graph/) for the edges and nodes and the [Semantic Scholar](https://www.semanticscholar.org) database for the node labels. 
 IGB also comprises synthetic and real graph datasets where the synthetic dataset has randomly initialized node embeddings while the real graph dataset has variable dimension node embeddings generated using [Sentence-BERT](https://www.sbert.net) models. 
 IGB provides a comprehensive study on the impact of embedding generation and large labeled nodes on various GNN models. 
