@@ -100,6 +100,74 @@ class IGB260MDGLDataset(DGLDataset):
         return len(self.graphs)
 
 
+class IGBHeteroDGLDataset(DGLDataset):
+    def __init__(self, args):
+        self.dir = args.path
+        self.args = args
+        super().__init__(name='IGB260M')
+
+    def process(self):
+
+        paper_paper_edges = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 'paper__cites__paper', 'edge_index.npy'), mmap_mode='r'))
+        author_paper_edges = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 'paper__written_by__author', 'edge_index.npy'), mmap_mode='r'))
+        affiliation_author_edges = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 'author__affiliated_to__institute', 'edge_index.npy'), mmap_mode='r'))
+        paper_fos_edges = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 'paper__topic__fos', 'edge_index.npy'), mmap_mode='r'))
+
+        graph_data = {
+            ('paper', 'cites', 'paper'): (paper_paper_edges[:, 0], paper_paper_edges[:, 1]),
+            ('paper', 'written_by', 'author'): (author_paper_edges[:, 0], author_paper_edges[:, 1]),
+            ('author', 'affiliated_to', 'institute'): (affiliation_author_edges[:, 0], affiliation_author_edges[:, 1]),
+            ('paper', 'topic', 'fos'): (paper_fos_edges[:, 0], paper_fos_edges[:, 1])
+        }
+        self.graph = dgl.heterograph(graph_data)     
+        self.graph.predict = 'paper'
+
+        paper_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 'paper', 'node_feat.npy'), mmap_mode='r'))
+        paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 'paper', 'node_label_19.npy'), mmap_mode='r')).to(torch.long)
+        self.graph.nodes['paper'].data['feat'] = paper_node_features
+        self.graph.num_paper_nodes = paper_node_features.shape[0]
+        self.graph.nodes['paper'].data['label'] = paper_node_labels
+
+        author_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 'author', 'node_feat.npy'), mmap_mode='r'))
+        self.graph.nodes['author'].data['feat'] = author_node_features
+        self.graph.num_author_nodes = author_node_features.shape[0]
+
+        institute_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 'institute', 'node_feat.npy'), mmap_mode='r'))
+        self.graph.nodes['institute'].data['feat'] = institute_node_features
+        self.graph.num_institute_nodes = institute_node_features.shape[0]
+
+        fos_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 'fos', 'node_feat.npy'), mmap_mode='r'))
+        self.graph.nodes['fos'].data['feat'] = fos_node_features
+        self.graph.num_fos_nodes = fos_node_features.shape[0]
+        
+        self.graph = dgl.remove_self_loop(self.graph, etype='cites')
+        self.graph = dgl.add_self_loop(self.graph, etype='cites')
+        
+        n_nodes = paper_node_features.shape[0]
+
+        n_train = int(n_nodes * 0.6)
+        n_val = int(n_nodes * 0.2)
+        
+        train_mask = torch.zeros(n_nodes, dtype=torch.bool)
+        val_mask = torch.zeros(n_nodes, dtype=torch.bool)
+        test_mask = torch.zeros(n_nodes, dtype=torch.bool)
+        
+        train_mask[:n_train] = True
+        val_mask[n_train:n_train + n_val] = True
+        test_mask[n_train + n_val:] = True
+        
+        self.graph.nodes['paper'].data['train_mask'] = train_mask
+        self.graph.nodes['paper'].data['val_mask'] = val_mask
+        self.graph.nodes['paper'].data['test_mask'] = test_mask
+        
+
+    def __getitem__(self, i):
+        return self.graph
+
+    def __len__(self):
+        return 1
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--path', type=str, default='/mnt/nvme14/IGB260M/', 
