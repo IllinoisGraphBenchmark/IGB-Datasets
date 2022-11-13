@@ -76,7 +76,7 @@ We ran each of these models on the IGB dataset collections to get a baseline. Ou
   <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igbbaseline.png' />
 </p>
 
-We aim to improve these baselines by testing out more hyperparameters.
+We aim to improve these baselines by testing out more hyperparameters. *Models have been trained for 3 epochs with suboptimal hyperparameters on these datasets.
 
 ### (4) Multi-GPU Runs
 
