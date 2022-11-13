@@ -24,12 +24,6 @@ class SAGE(nn.Module):
         return h
 
 class GCN(nn.Module):
-    # def __init__(self, in_feats, h_feats, num_classes):
-    #     super(GCN, self).__init__()
-    #     self.conv1 = GraphConv(in_feats, h_feats)
-    #     self.conv2 = GraphConv(h_feats, num_classes)
-    #     self.h_feats = h_feats
-
     def __init__(self, in_feats, h_feats, num_classes, num_layers=2, dropout=0.2):
         super(GCN, self).__init__()
         self.layers = nn.ModuleList()
@@ -50,12 +44,6 @@ class GCN(nn.Module):
         return h
 
 class GAT(nn.Module):
-    # def __init__(self, in_feats, h_feats, num_classes, num_heads):
-    #     super(GAT, self).__init__()
-    #     self.conv1 = GATConv(in_feats, h_feats, num_heads)
-    #     self.conv2 = GATConv(h_feats * num_heads, num_classes, num_heads)
-    #     self.h_feats = h_feats
-
     def __init__(self, in_feats, h_feats, num_classes, num_heads, num_layers=2, dropout=0.2):
         super(GAT, self).__init__()
         self.layers = nn.ModuleList()
@@ -65,14 +53,6 @@ class GAT(nn.Module):
         self.layers.append(GATConv(h_feats * num_heads, num_classes, num_heads))
         self.dropout = nn.Dropout(dropout)
 
-    # def forward(self, mfgs, x):
-    #     h_dst = x[:mfgs[0].num_dst_nodes()]
-    #     h = self.conv1(mfgs[0], (x, h_dst)).flatten(1)
-    #     h = F.relu(h)
-    #     h_dst = h[:mfgs[1].num_dst_nodes()]
-    #     h = self.conv2(mfgs[1], (h, h_dst)).mean(1)
-    #     return h
-    
     def forward(self, blocks, x):
         h = x
         for l, (layer, block) in enumerate(zip(self.layers, blocks)):
