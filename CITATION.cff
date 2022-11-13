@@ -14,3 +14,8 @@ authors:
     family-names: Mailthody
   - given-names: Wen-mei
     family-names: Hwu
+repository-code: >-
+  https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets
+keywords:
+  - Graph Neural Networks
+  - Dataset
