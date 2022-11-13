@@ -1,5 +1,9 @@
 # IGB260M-Datasets
 
+<p align='center'>
+  <img width='40%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/logo.png' />
+</p>
+
 ## Abstract
 
 Graphs are powerful data structures that solve complex problems like recommender systems, fraud detection, and influence prediction. 
