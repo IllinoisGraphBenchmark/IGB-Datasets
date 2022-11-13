@@ -27,7 +27,7 @@ Hosted on AWS. To get early access scroll to the bottom. Coming soon...
 
 ### (1) Data loaders 
 
-We have easy to use DGLDataset dataloader and we will soon add a PyTorch Geometric dataloader. The dataloader takes in arguments for the path of the dataset, the number of classes $\in$ [19, 2983]. You can also mention whether to read the data into the memory or in `mmap_mode='r'` incase the dataset doesn't fit in your RAM. (Training becomes significantly slower when readig from disk). We can also choose to get a synthetic node embeddings for testing systems. 
+We have easy to use DGLDataset dataloader and we will soon add a PyTorch Geometric dataloader. The dataloader takes in arguments for the path of the dataset, the number of classes $\in$ [19, 2983]. You can also mention whether to read the data into the memory or in `mmap_mode='r'` incase the dataset doesn't fit in your RAM. (Training becomes significantly slower when reading from disk). We can also choose to get a synthetic node embeddings for testing systems. 
 
 ```python
 import argparse, dgl
