@@ -19,6 +19,10 @@ IGB is compatible with popular GNN frameworks like DGL and PyTorch Geometric and
   <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igbmetrics.png' />
 </p>
 
+## Downloading dataset
+
+Hosted on AWS. To get early access scroll to the bottom. Coming soon...
+
 ## Usage
 
 ### (1) Data loaders 
@@ -95,7 +99,8 @@ python train_single_gpu.py --model_type gcn --dataset_size experimental --num_cl
 
 To learn more about the hyperparameters please take a look at `train/train_multi_gpu.py`.
 
-
+## Inquiries/Getting Involved
+Please reach out to [Arpandeep Khatua](mailto:arpandeepk@gmail.com?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github)
 
 
 
