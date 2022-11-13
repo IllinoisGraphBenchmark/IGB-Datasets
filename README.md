@@ -1,7 +1,7 @@
 # IGB260M-Datasets
 
 <p align='center'>
-  <img width='50%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/logo.png' />
+  <img width='60%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/logo.png' />
 </p>
 
 ## Abstract
