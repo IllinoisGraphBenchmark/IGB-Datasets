@@ -22,7 +22,7 @@ IGB is compatible with popular GNN frameworks like DGL and PyTorch Geometric and
 ## IGB-full Heterogeneous Dataset Metrics
 
 <p align='left'>
-  <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igb-hetero-schema.png' />
+  <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igb_hetero_schema.png' />
 </p>
 
 
