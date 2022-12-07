@@ -4,8 +4,6 @@
   <img width='60%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/logo.png' />
 </p>
 
-### [Senior Thesis](https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/Arpandeep_Khatua__UG_Senior_Thesis___Illinois_Graph_Benchmark_Dataset.pdf)
-
 ## Abstract
 
 In this work, we introduce the **Illinois Graph Benchmark (IGB)**, a collection of enormous graph datasets for node classification tasks. IGB incorporates the most extensive real-world homogeneous graph with 260 million nodes and more than three billion edges, including 220 million labeled nodes for node classification tasks. 
@@ -21,7 +19,7 @@ IGB is compatible with popular GNN frameworks like DGL and PyTorch Geometric and
   <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igbmetrics.png' />
 </p>
 
-## IGB-full Heterogeneous Dataset Metrics
+## IGB Heterogeneous Dataset Metrics
 
 <p align='left'>
   <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igb_hetero_schema.png' />
@@ -108,6 +106,11 @@ python train_single_gpu.py --model_type gcn --dataset_size experimental --num_cl
 
 To learn more about the hyperparameters please take a look at `train/train_multi_gpu.py`.
 
+## IGB Documentation
+
+[Senior Thesis](https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/Arpandeep_Khatua__UG_Senior_Thesis___Illinois_Graph_Benchmark_Dataset.pdf)
+
+
 ## Contributions
 Please check the Contribution.md file for more details.
 
@@ -115,4 +118,5 @@ Please check the Contribution.md file for more details.
 Please reach out to [Arpandeep Khatua](mailto:arpandeepk@gmail.com?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github) and [Vikram Sharma Mailthody] (mailto:vsm2@illinois.edu?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github)
 
 
-
+## Citations
+To be added soon. 
