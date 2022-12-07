@@ -2,7 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: IGB260M - Massive Homogeneous Graph Dataset
+title: IGB: An Immense Graph Dataset for Machine Learning Workloads
 message: >-
   If you use this dataset, please cite it using the
   metadata from this file.
