@@ -1,4 +1,4 @@
-# IGB260M-Datasets
+# IGB-Datasets
 
 <p align='center'>
   <img width='60%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/logo.png' />
@@ -108,9 +108,11 @@ python train_single_gpu.py --model_type gcn --dataset_size experimental --num_cl
 
 To learn more about the hyperparameters please take a look at `train/train_multi_gpu.py`.
 
-## Inquiries/Getting Involved
-Please reach out to [Arpandeep Khatua](mailto:arpandeepk@gmail.com?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github)
+## Contributions
+Please check the Contribution.md file for more details.
 
+## Questions
+Please reach out to [Arpandeep Khatua](mailto:arpandeepk@gmail.com?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github) and [Vikram Sharma Mailthody] (mailto:vsm2@illinois.edu?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github)
 
 
 
