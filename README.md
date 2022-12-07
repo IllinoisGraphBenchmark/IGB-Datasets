@@ -13,7 +13,7 @@ IGB also comprises synthetic and real graph datasets where the synthetic dataset
 IGB provides a comprehensive study on the impact of embedding generation and large labeled nodes on various GNN models. 
 IGB is compatible with popular GNN frameworks like DGL and PyTorch Geometric and comes with predefined popular models like graph Convolutional Neural Networks (GCN), GraphSAGE, and Graph Attention Network (GAT) for easy model development.
 
-## Homogeneous Dataset Metrics
+## IGB Homogeneous Dataset Metrics
 
 <p align='left'>
   <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igbmetrics.png' />
