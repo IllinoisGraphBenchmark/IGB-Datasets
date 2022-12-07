@@ -12,10 +12,20 @@ authors:
     family-names: Khatua
   - given-names: Vikram Sharma
     family-names: Mailthody
+  - given-names: Bhagyashree
+    family-names: Taleka 
+  - given-names: Xiang
+    family-names: Song
+  - given-names: Tengfei
+    family-names: Ma
+  - given-names: Piotr
+    family-names: Bigaj
   - given-names: Wen-mei
     family-names: Hwu
 repository-code: >-
-  https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets
+  https://github.com/IllinoisGraphBenchmark/IGB-Datasets
 keywords:
   - Graph Neural Networks
   - Dataset
+  - Citation graph
+  - GNN
