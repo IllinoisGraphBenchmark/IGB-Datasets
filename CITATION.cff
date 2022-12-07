@@ -2,30 +2,34 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: IGB: An Immense Graph Dataset for Machine Learning Workloads
+title: >-
+  IGB: An Immense Graph Dataset for Machine Learning
+  Workloads
 message: >-
-  If you use this dataset, please cite it using the
+  If you use this dataset, please cite it using the  
   metadata from this file.
 type: dataset
 authors:
   - given-names: Arpandeep
     family-names: Khatua
+    affiliation: UIUC
   - given-names: Vikram Sharma
     family-names: Mailthody
+    email: vsm2@illinois.edu
+    affiliation: UIUC/NVIDIA
+    orcid: 'https://orcid.org/0000-0002-9611-8075'
   - given-names: Bhagyashree
-    family-names: Taleka 
+    family-names: Taleka
+    affiliation: USC
   - given-names: Xiang
     family-names: Song
+    affiliation: AWS
   - given-names: Tengfei
     family-names: Ma
+    affiliation: IBM Research
   - given-names: Piotr
     family-names: Bigaj
+    affiliation: NVIDIA
   - given-names: Wen-mei
     family-names: Hwu
-repository-code: >-
-  https://github.com/IllinoisGraphBenchmark/IGB-Datasets
-keywords:
-  - Graph Neural Networks
-  - Dataset
-  - Citation graph
-  - GNN
+    affiliation: UIUC/NVIDIA
