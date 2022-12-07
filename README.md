@@ -112,7 +112,7 @@ To learn more about the hyperparameters please take a look at `train/train_multi
 
 
 ## Contributions
-Please check the Contribution.md file for more details.
+Please check the [Contributions.md](Contributions.md) file for more details.
 
 ## Questions
 Please reach out to [Arpandeep Khatua](mailto:arpandeepk@gmail.com?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github) and [Vikram Sharma Mailthody](mailto:vsm2@illinois.edu?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github)
