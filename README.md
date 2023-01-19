@@ -4,6 +4,14 @@
   <img width='60%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/logo.png' />
 </p>
 
+## Get access
+
+Please fill out this google form and we will repond back to you as soon as we can.
+
+```
+https://forms.gle/fXsipCvBKhmrdg2m6
+```
+
 ## Abstract
 
 In this work, we introduce the **Illinois Graph Benchmark (IGB)**, a collection of enormous graph datasets for node classification tasks. IGB incorporates the most extensive real-world homogeneous graph with 260 million nodes and more than three billion edges, including 220 million labeled nodes for node classification tasks. 
