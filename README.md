@@ -6,7 +6,7 @@
 
 ## Get access
 
-Please fill out this google form and we will repond back to you as soon as we can.
+Please fill out this google form and we will respond back to you as soon as we can.
 
 ```
 https://forms.gle/fXsipCvBKhmrdg2m6
