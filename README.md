@@ -4,7 +4,7 @@
   <img width='60%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/logo.png' />
 </p>
 
-## Get access
+## Get early access
 
 Please fill out this google form and we will respond back to you as soon as we can.
 
@@ -36,7 +36,7 @@ IGB is compatible with popular GNN frameworks like DGL and PyTorch Geometric and
 
 ## Downloading dataset
 
-Hosted on AWS. To get early access scroll to the bottom. Coming soon...
+Hosted on AWS. Early access description is provided at the top of this readme.
 
 ## Usage
 
