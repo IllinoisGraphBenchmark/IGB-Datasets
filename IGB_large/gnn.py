@@ -518,7 +518,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--modelpath', type=str, default='gsage_2983.pt')
 
-    parser.add_argument('--dataset_size', type=str, default='large', choices=['experimental', 'small', 'medium', 'large', 'full'])
+    parser.add_argument('--dataset_size', type=str, default='large', choices=['tiny', 'small', 'medium', 'large', 'full'])
     parser.add_argument('--num_classes', type=int, default=19, choices=[19, 2983])
     parser.add_argument('--hidden_channels', type=int, default=256)
     parser.add_argument('--fan_out', type=str, default='5,10')

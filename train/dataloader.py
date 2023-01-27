@@ -16,7 +16,7 @@ class IGB260M(object):
         self.num_classes = classes
 
     def num_nodes(self):
-        if self.size == 'experimental':
+        if self.size == 'tiny':
             return 100000
         elif self.size == 'small':
             return 1000000
@@ -173,7 +173,7 @@ if __name__ == '__main__':
     parser.add_argument('--path', type=str, default='/mnt/nvme14/IGB260M/', 
         help='path containing the datasets')
     parser.add_argument('--dataset_size', type=str, default='small',
-        choices=['experimental', 'small', 'medium', 'large', 'full'], 
+        choices=['tiny', 'small', 'medium', 'large', 'full'], 
         help='size of the datasets')
     parser.add_argument('--num_classes', type=int, default=2983, 
         choices=[19, 2983], help='number of classes')

@@ -1,4 +1,4 @@
-Dataset_size: experimental
+Dataset_size: tiny
 Model       : gat
 Num_classes : 19
 
@@ -28,7 +28,7 @@ Train accuracy: 0.57 ± 0.09 	 Best: 66.8667%
 Test accuracy: 0.58 ± 0.09 	 Best: 67.2100%
 
  -------- For debugging --------- 
-Parameters:  Namespace(batch_size=32768, dataset_size='experimental', decay=0.001, device='0', dropout=0.2, epochs=20, fan_out='5,10', hidden_channels=16, in_memory=1, learning_rate=0.01, model='gat', modelpath='gat_19.pt', num_classes=19, num_layers=2, num_workers=4, path='/mnt/nvme14/IGB260M/')
+Parameters:  Namespace(batch_size=32768, dataset_size='tiny', decay=0.001, device='0', dropout=0.2, epochs=20, fan_out='5,10', hidden_channels=16, in_memory=1, learning_rate=0.01, model='gat', modelpath='gat_19.pt', num_classes=19, num_layers=2, num_workers=4, path='/mnt/nvme14/IGB260M/')
 Graph(num_nodes=100000, num_edges=547416,
       ndata_schemes={'feat': Scheme(shape=(1024,), dtype=torch.float32), 'label': Scheme(shape=(), dtype=torch.int64), 'train_mask': Scheme(shape=(), dtype=torch.bool), 'val_mask': Scheme(shape=(), dtype=torch.bool), 'test_mask': Scheme(shape=(), dtype=torch.bool), 'features': Scheme(shape=(1024,), dtype=torch.float32), 'labels': Scheme(shape=(), dtype=torch.int64)}
       edata_schemes={})

@@ -20,19 +20,19 @@ def track_acc(g, args, device):
     val_nid = torch.nonzero(g.ndata['val_mask'], as_tuple=True)[0]
     test_nid = torch.nonzero(g.ndata['test_mask'], as_tuple=True)[0]
     
-    train_dataloader = dgl.dataloading.NodeDataLoader(
+    train_dataloader = dgl.dataloading.DataLoader(
         g, train_nid, sampler,
         batch_size=args.batch_size,
         shuffle=True, drop_last=False,
         num_workers=args.num_workers)    
 
-    val_dataloader = dgl.dataloading.NodeDataLoader(
+    val_dataloader = dgl.dataloading.DataLoader(
         g, val_nid, sampler,
         batch_size=args.batch_size,
         shuffle=False, drop_last=False,
         num_workers=args.num_workers)
 
-    test_dataloader = dgl.dataloading.NodeDataLoader(
+    test_dataloader = dgl.dataloading.DataLoader(
         g, test_nid, sampler,
         batch_size=args.batch_size,
         shuffle=True, drop_last=False,
@@ -144,8 +144,8 @@ if __name__ == '__main__':
     # Loading dataset
     parser.add_argument('--path', type=str, default='/mnt/nvme14/IGB260M/', 
         help='path containing the datasets')
-    parser.add_argument('--dataset_size', type=str, default='experimental',
-        choices=['experimental', 'small', 'medium', 'large', 'full'], 
+    parser.add_argument('--dataset_size', type=str, default='tiny',
+        choices=['tiny', 'small', 'medium', 'large', 'full'], 
         help='size of the datasets')
     parser.add_argument('--num_classes', type=int, default=19, 
         choices=[19, 2983], help='number of classes')

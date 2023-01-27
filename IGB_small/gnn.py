@@ -35,7 +35,7 @@ class IGL260MDataset(object):
             return 2983
     
     # def num_nodes(self) -> int:
-    #     if self.size == 'experimental':
+    #     if self.size == 'tiny':
     #         return 100000
     #     elif self.size == 'small':
     #         return 1000000
@@ -528,7 +528,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--modelpath', type=str, default='gsage_2983.pt')
 
-    parser.add_argument('--dataset_size', type=str, default='small', choices=['experimental', 'small', 'medium', 'large', 'full'])
+    parser.add_argument('--dataset_size', type=str, default='small', choices=['tiny', 'small', 'medium', 'large', 'full'])
     parser.add_argument('--num_classes', type=int, default=2983, choices=[19, 2983])
     parser.add_argument('--hidden_channels', type=int, default=16)
     parser.add_argument('--fan_out', type=str, default='5,10')

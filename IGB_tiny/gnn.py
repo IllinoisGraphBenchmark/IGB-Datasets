@@ -515,7 +515,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--modelpath', type=str, default='gcn_19.pt')
 
-    parser.add_argument('--dataset_size', type=str, default='experimental', choices=['experimental', 'small', 'medium', 'large', 'full'])
+    parser.add_argument('--dataset_size', type=str, default='tiny', choices=['tiny', 'small', 'medium', 'large', 'full'])
     parser.add_argument('--num_classes', type=int, default=19, choices=[19, 2983])
     parser.add_argument('--hidden_channels', type=int, default=16)
     parser.add_argument('--fan_out', type=str, default='5,10')

@@ -51,8 +51,8 @@ from dataloader import IGB260MDGLDataset
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, default='/mnt/nvme14/IGB260M/', 
     help='path containing the datasets')
-parser.add_argument('--dataset_size', type=str, default='experimental',
-    choices=['experimental', 'small', 'medium', 'large', 'full'], 
+parser.add_argument('--dataset_size', type=str, default='tiny',
+    choices=['tiny', 'small', 'medium', 'large', 'full'], 
     help='size of the datasets')
 parser.add_argument('--num_classes', type=int, default=19, 
     choices=[19, 2983], help='number of classes')
@@ -102,14 +102,14 @@ We aim to improve these baselines by testing out more hyperparameters. *Models h
 We provide scripts to run the above models on mulitple GPUs using DGL and PyTorch methods. To test it out by running GCN on IGB-tiny with the default hyperparameters you can test it out using:
 
 ```python
-python train_multi_gpu.py --model_type gcn --dataset_size experimental --num_classes 19 --gpu_devices 0,1,2,3
+python train_multi_gpu.py --model_type gcn --dataset_size tiny --num_classes 19 --gpu_devices 0,1,2,3
 ```
 To try single GPU run use:
 ```python
-python train_multi_gpu.py --model_type gcn --dataset_size experimental --num_classes 19 --gpu_devices 0
+python train_multi_gpu.py --model_type gcn --dataset_size tiny --num_classes 19 --gpu_devices 0
 ```
 ```python
-python train_single_gpu.py --model_type gcn --dataset_size experimental --num_classes 19
+python train_single_gpu.py --model_type gcn --dataset_size tiny --num_classes 19
 ```
 
 To learn more about the hyperparameters please take a look at `train/train_multi_gpu.py`.

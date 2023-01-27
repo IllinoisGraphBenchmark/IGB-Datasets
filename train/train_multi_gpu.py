@@ -149,8 +149,8 @@ if __name__ == '__main__':
     # Loading dataset
     parser.add_argument('--path', type=str, default='/mnt/nvme14/IGB260M/', 
         help='path containing the datasets')
-    parser.add_argument('--dataset_size', type=str, default='experimental',
-        choices=['experimental', 'small', 'medium', 'large', 'full'], 
+    parser.add_argument('--dataset_size', type=str, default='tiny',
+        choices=['tiny', 'small', 'medium', 'large', 'full'], 
         help='size of the datasets')
     parser.add_argument('--num_classes', type=int, default=19, 
         choices=[19, 2983], help='number of classes')

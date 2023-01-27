@@ -24,9 +24,9 @@ if __name__ == '__main__':
     files.extend([join(path,f) for f in listdir(path) if (isfile(join(path, f)))][::-1])
     print(files)
 
-    exp_feat_with_labels = np.memmap('/mnt/nvme14/IGB260M/experimental/processed/paper/node_feat_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES,1024))
-    exp_labels_19 = np.memmap('/mnt/nvme14/IGB260M/experimental/processed/paper/node_label_19_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES))
-    exp_labels_2K = np.memmap('/mnt/nvme14/IGB260M/experimental/processed/paper/node_label_2K_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES))
+    exp_feat_with_labels = np.memmap('/mnt/nvme14/IGB260M/tiny/processed/paper/node_feat_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES,1024))
+    exp_labels_19 = np.memmap('/mnt/nvme14/IGB260M/tiny/processed/paper/node_label_19_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES))
+    exp_labels_2K = np.memmap('/mnt/nvme14/IGB260M/tiny/processed/paper/node_label_2K_memmapped.npy', dtype='float32', mode='w+', shape=(NUM_NODES))
     node_degree = np.load('/mnt/nvme12/paper_node_degree.npy', allow_pickle=True).tolist()
     # first take all the paper_ids with labels
     idx = 0
@@ -49,9 +49,9 @@ if __name__ == '__main__':
             continue 
         break
 
-    np.save('/mnt/nvme14/IGB260M/experimental/processed/paper/node_feat.npy', exp_feat_with_labels)
-    np.save('/mnt/nvme14/IGB260M/experimental/processed/paper/node_label_19.npy', exp_labels_19)
-    np.save('/mnt/nvme14/IGB260M/experimental/processed/paper/node_label_2K.npy', exp_labels_2K)
+    np.save('/mnt/nvme14/IGB260M/tiny/processed/paper/node_feat.npy', exp_feat_with_labels)
+    np.save('/mnt/nvme14/IGB260M/tiny/processed/paper/node_label_19.npy', exp_labels_19)
+    np.save('/mnt/nvme14/IGB260M/tiny/processed/paper/node_label_2K.npy', exp_labels_2K)
     del paper_labels
     del paper_labels_large
 
@@ -63,14 +63,14 @@ if __name__ == '__main__':
             exp_edges.append(np.array([paper_id_idx_mapping[edge[1]], paper_id_idx_mapping[edge[0]]]))
     print("Finished paper edges")
 
-    with open('/mnt/nvme14/IGB260M/experimental/processed/paper/paper_id_index_mapping.npy', 'wb') as f:
+    with open('/mnt/nvme14/IGB260M/tiny/processed/paper/paper_id_index_mapping.npy', 'wb') as f:
         np.save(f, paper_id_idx_mapping) 
 
     del paper_id_idx_mapping
 
     print(np.array(exp_edges).shape)
     
-    with open('/mnt/nvme14/IGB260M/experimental/processed/paper__cites__paper/edge_index.npy', 'wb') as f:
+    with open('/mnt/nvme14/IGB260M/tiny/processed/paper__cites__paper/edge_index.npy', 'wb') as f:
         np.save(f, np.array(exp_edges)) 
 
 
