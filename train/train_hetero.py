@@ -26,7 +26,7 @@ def evaluate(model, dataloader):
         predictions = np.concatenate(predictions)
         labels = np.concatenate(labels)
 
-        acc = sklearn.metrics.accuracy_score(labels, predictions)*100
+        acc = sklearn.metrics.accuracy_score(labels, predictions)
         return acc
 
 
