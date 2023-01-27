@@ -14,19 +14,19 @@ warnings.filterwarnings("ignore")
 
 
 def evaluate(model, dataloader):
-    preds = []
+    predictions = []
     labels = []
     with torch.no_grad():
         for input_nodes, output_nodes, blocks in dataloader:
             blocks = [block.to(device) for block in blocks]
-            x = blocks[0].srcdata['feat']
-            y = blocks[-1].dstdata['label']['paper']
-            y_hat = model(blocks, x)
-            preds.append(y_hat.cpu())
-            labels.append(y.cpu())
-        preds = torch.cat(preds, 0)
-        labels = torch.cat(labels, 0)
-        acc = MF.accuracy(preds, labels)
+            inputs = blocks[0].srcdata['feat']
+            labels.append(blocks[-1].dstdata['label']['paper'].cpu().numpy())
+            predictions.append(model(blocks, inputs).argmax(1).cpu().numpy())
+
+        predictions = np.concatenate(predictions)
+        labels = np.concatenate(labels)
+
+        acc = sklearn.metrics.accuracy_score(labels, predictions)*100
         return acc
 
 
