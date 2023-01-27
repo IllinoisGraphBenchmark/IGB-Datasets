@@ -39,20 +39,20 @@ def track_acc(g, category, args, device):
     train_nid = torch.nonzero(g.nodes[category].data['train_mask'], as_tuple=True)[0]
     val_nid = torch.nonzero(g.nodes[category].data['val_mask'], as_tuple=True)[0]
     test_nid = torch.nonzero(g.nodes[category].data['test_mask'], as_tuple=True)[0]
-    
-    train_dataloader = dgl.dataloading.NodeDataLoader(
+
+    train_dataloader = dgl.dataloading.DataLoader(
         g, {category: train_nid}, sampler,
         batch_size=args.batch_size,
         shuffle=True, drop_last=False,
-        num_workers=args.num_workers)    
+        num_workers=args.num_workers)
 
-    val_dataloader = dgl.dataloading.NodeDataLoader(
+    val_dataloader = dgl.dataloading.DataLoader(
         g, {category: val_nid}, sampler,
         batch_size=args.batch_size,
         shuffle=False, drop_last=False,
         num_workers=args.num_workers)
 
-    test_dataloader = dgl.dataloading.NodeDataLoader(
+    test_dataloader = dgl.dataloading.DataLoader(
         g, {category: test_nid}, sampler,
         batch_size=args.batch_size,
         shuffle=True, drop_last=False,
@@ -61,13 +61,13 @@ def track_acc(g, category, args, device):
     in_feats = g.ndata['feat'][category].shape[1]
 
     if args.model_type == 'rgcn':
-        model = RGCN(g.etypes, in_feats, args.hidden_channels, 
+        model = RGCN(g.etypes, in_feats, args.hidden_channels,
             args.num_classes, args.num_layers).to(device)
     if args.model_type == 'rsage':
-        model = RSAGE(g.etypes, in_feats, args.hidden_channels, 
+        model = RSAGE(g.etypes, in_feats, args.hidden_channels,
             args.num_classes, args.num_layers).to(device)
     if args.model_type == 'rgat':
-        model = RGAT(g.etypes, in_feats, args.hidden_channels, 
+        model = RGAT(g.etypes, in_feats, args.hidden_channels,
             args.num_classes, args.num_layers, args.num_heads).to(device)
 
     param_size = 0
@@ -81,7 +81,7 @@ def track_acc(g, category, args, device):
     print('model size: {:.3f}MB'.format(size_all_mb))
 
     loss_fcn = nn.CrossEntropyLoss().to(device)
-    optimizer = optim.Adam(model.parameters(), 
+    optimizer = optim.Adam(model.parameters(),
         lr=args.learning_rate)
     sched = optim.lr_scheduler.StepLR(optimizer, step_size=25, gamma=0.25)
 
@@ -105,7 +105,7 @@ def track_acc(g, category, args, device):
             loss.backward()
             optimizer.step()
             total_loss += loss.item()
-            train_acc += sklearn.metrics.accuracy_score(y.cpu().numpy(), 
+            train_acc += sklearn.metrics.accuracy_score(y.cpu().numpy(),
                 y_hat.argmax(1).detach().cpu().numpy())*100
             gpu_mem_alloc += (
                 torch.cuda.max_memory_allocated() / 1000000
@@ -143,14 +143,14 @@ def track_acc(g, category, args, device):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     # Loading dataset
-    parser.add_argument('--path', type=str, default='/root/gnndataset', 
+    parser.add_argument('--path', type=str, default='/root/gnndataset',
         help='path containing the datasets')
     parser.add_argument('--dataset_size', type=str, default='tiny',
-        choices=['tiny', 'small', 'medium', 'large', 'full'], 
+        choices=['tiny', 'small', 'medium', 'large', 'full'],
         help='size of the datasets')
-    parser.add_argument('--num_classes', type=int, default=19, 
+    parser.add_argument('--num_classes', type=int, default=19,
         choices=[19, 2983], help='number of classes')
-    parser.add_argument('--in_memory', type=int, default=0, 
+    parser.add_argument('--in_memory', type=int, default=0,
         choices=[0, 1], help='0:read only mmap_mode=r, 1:load into memory')
     parser.add_argument('--synthetic', type=int, default=0,
         choices=[0, 1], help='0:nlp-node embeddings, 1:random')
@@ -161,7 +161,7 @@ if __name__ == '__main__':
     parser.add_argument('--modelpath', type=str, default='deletethis.pt')
     parser.add_argument('--model_save', type=int, default=0)
 
-    # Model parameters 
+    # Model parameters
     parser.add_argument('--fan_out', type=str, default='10,15')
     parser.add_argument('--batch_size', type=int, default=10240)
     parser.add_argument('--num_workers', type=int, default=4)
