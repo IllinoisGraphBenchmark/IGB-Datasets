@@ -1,7 +1,7 @@
 # IGB-Datasets
 
 <p align='center'>
-  <img width='60%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/logo.png' />
+  <img width='60%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/doc/figures/logo.png' />
 </p>
 
 ## Get early access
@@ -24,13 +24,13 @@ IGB is compatible with popular GNN frameworks like DGL and PyTorch Geometric and
 ## IGB Homogeneous Dataset Metrics
 
 <p align='left'>
-  <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igbmetrics.png' />
+  <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/doc/figures/igbmetrics.png' />
 </p>
 
 ## IGB Heterogeneous Dataset Metrics
 
 <p align='left'>
-  <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igb_hetero_schema.png' />
+  <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/doc/figures/igb_hetero_schema.png' />
 </p>
 
 
@@ -92,7 +92,7 @@ if args.model_type == 'gat':
 We ran each of these models on the IGB dataset collections to get a baseline. Our goal is to enable GNN researchers to develop and test novel models using this dataset. We expect more robust models due to the presence of massive labeled data. We will released detailed analysis of the runs and the hyperparameters along with other relevant experiments in our upcoming paper. 
 
 <p align='left'>
-  <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/igbbaseline.png' />
+  <img width='80%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/doc/figures/igbbaseline.png' />
 </p>
 
 We aim to improve these baselines by testing out more hyperparameters. *Models have been trained for 3 epochs with suboptimal hyperparameters on these datasets.
@@ -116,7 +116,7 @@ To learn more about the hyperparameters please take a look at `train/train_multi
 
 ## IGB Documentation
 
-[Senior Thesis](https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/Arpandeep_Khatua__UG_Senior_Thesis___Illinois_Graph_Benchmark_Dataset.pdf)
+[Senior Thesis](https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/doc/Arpandeep_Khatua__UG_Senior_Thesis___Illinois_Graph_Benchmark_Dataset.pdf)
 
 
 ## Contributions
