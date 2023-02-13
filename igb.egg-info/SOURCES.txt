@@ -1,0 +1,14 @@
+LICENSE
+README.md
+setup.py
+igb/__init__.py
+igb/dataloader.py
+igb/models.py
+igb/train_hetero.py
+igb/train_multi_gpu.py
+igb/train_single_gpu.py
+igb.egg-info/PKG-INFO
+igb.egg-info/SOURCES.txt
+igb.egg-info/dependency_links.txt
+igb.egg-info/requires.txt
+igb.egg-info/top_level.txt

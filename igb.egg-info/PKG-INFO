@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: igb
+Version: 0.1.0
+Summary: IGB Graph Dataset Collection
+Home-page: https://github.com/IllinoisGraphBenchmark/IGB-Datasets
+Author: Arpandeep Khatua
+Author-email: akhatua2@illinois.edu
+License: ODC-By-1.0
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+License-File: LICENSE
+
+UNKNOWN
+
