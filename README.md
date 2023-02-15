@@ -12,6 +12,19 @@ Please fill out this google form and we will respond back to you as soon as we c
 https://forms.gle/fXsipCvBKhmrdg2m6
 ```
 
+## Installation Guide
+
+Set up a pytorch docker and install dgl. Then foloow these steps in order to install the `igb` package.
+
+Clone the repo: `git clone https://github.com/IllinoisGraphBenchmark/IGB-Datasets.git`
+
+Go to the folder root: `cd IGB-Datasets`
+
+Install the package: `pip install .`
+
+Now in order to get the dataloader you can: `from igb import dataloader`
+
+
 ## Abstract
 
 In this work, we introduce the **Illinois Graph Benchmark (IGB)**, a collection of enormous graph datasets for node classification tasks. IGB incorporates the most extensive real-world homogeneous graph with 260 million nodes and more than three billion edges, including 220 million labeled nodes for node classification tasks. 
