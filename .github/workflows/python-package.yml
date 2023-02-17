@@ -32,3 +32,8 @@ jobs:
         pip install flake8
         flake8 .
       continue-on-error: true
+    - name: Installing igb
+      run: |
+        pip install .
+        python -m from igb import dataloader
+      continue-on-error: true
