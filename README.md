@@ -14,14 +14,14 @@ https://forms.gle/fXsipCvBKhmrdg2m6
 
 ## Installation Guide
 
-Set up a pytorch docker and install dgl. Then foloow these steps in order to install the `igb` package.
-
-Clone the repo: `git clone https://github.com/IllinoisGraphBenchmark/IGB-Datasets.git`
-
-Go to the folder root: `cd IGB-Datasets`
-
-Install the package: `pip install .`
-
+```python
+# Clone the repo
+>>> git clone https://github.com/IllinoisGraphBenchmark/IGB-Datasets.git
+# Go to the folder root
+>>> cd IGB-Datasets
+# Install the igb package
+>>> pip install .
+```
 Now in order to get the dataloader you can: `from igb import dataloader`
 
 
