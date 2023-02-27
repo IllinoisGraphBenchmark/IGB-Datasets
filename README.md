@@ -129,8 +129,7 @@ To learn more about the hyperparameters please take a look at `train/train_multi
 
 ## IGB Documentation
 
-[Senior Thesis](https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/doc/Arpandeep_Khatua__UG_Senior_Thesis___Illinois_Graph_Benchmark_Dataset.pdf)
-
+Please read our paper in Arxiv. 
 
 ## Contributions
 Please check the [Contributions.md](Contributions.md) file for more details.
@@ -140,4 +139,5 @@ Please reach out to [Arpandeep Khatua](mailto:arpandeepk@gmail.com?subject=[IGB2
 
 
 ## Citations
-To be added soon. 
+To be added soon.
+
