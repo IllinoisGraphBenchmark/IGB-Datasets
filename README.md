@@ -143,8 +143,26 @@ Please check the [Contributions.md](Contributions.md) file for more details.
 
 ## Questions
 1. Please reach out to [Arpandeep Khatua](mailto:arpandeepk@gmail.com?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github) and [Vikram Sharma Mailthody](mailto:vsm2@illinois.edu?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github)
-2. Please feel free to join our [Discord Channel](https://discord.gg/ZcpjgSuSdv).
+2. Please feel free to join our [Slack Channel](TBH).
+
+
+## Future updates
+
+1. We will be releasing raw text data for enabling NLP+GNN tasks. 
+2. Temporal graph datasets.
+
 
 ## Citations
-To be added soon.
 
+If you use datasets, please cite the below article.
+
+```
+@misc{igbdatasets,
+  doi = {10.48550/ARXIV.2302.13522},
+  url = {https://arxiv.org/abs/2302.13522},
+  author = {Khatua, Arpandeep and Mailthody, Vikram Sharma and Taleka, Bhagyashree and Ma, Tengfei and Song, Xiang and Hwu, Wen-mei},  
+  title = {IGB: Addressing The Gaps In Labeling, Features, Heterogeneity, and Size of Public Graph Datasets for Deep Learning Research},
+  year = {2023},
+  copyright = {Creative Commons Attribution 4.0 International}
+}
+```
