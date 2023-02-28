@@ -135,8 +135,8 @@ Please read our paper in Arxiv.
 Please check the [Contributions.md](Contributions.md) file for more details.
 
 ## Questions
-Please reach out to [Arpandeep Khatua](mailto:arpandeepk@gmail.com?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github) and [Vikram Sharma Mailthody](mailto:vsm2@illinois.edu?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github)
-
+1. Please reach out to [Arpandeep Khatua](mailto:arpandeepk@gmail.com?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github) and [Vikram Sharma Mailthody](mailto:vsm2@illinois.edu?subject=[IGB260M]%20Inquiry%20regarding%20dataset%20from%20github)
+2. Please feel free to join our [Discord Channel](https://discord.gg/ZcpjgSuSdv).
 
 ## Citations
 To be added soon.
