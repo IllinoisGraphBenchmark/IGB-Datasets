@@ -23,7 +23,7 @@ After you install the igb package in order to download `igb(h)-tiny`, `igb(h)-sm
 
 ```python
 >>> from igb import download
->>> download.download_dataset(path='/root/heterogeneous_dataset_gen/testing_downloads', dataset_type='homogeneous', dataset_size'tiny')
+>>> download.download_dataset(path='/root/igb_datasets', dataset_type='homogeneous', dataset_size'tiny')
 Downloaded 0.36 GB: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████| 366/366 [00:03<00:00, 98.94it/s]
 Downloaded igb_homogeneous_tiny -> md5sum verified.
 Final dataset size 0.39 GB.
