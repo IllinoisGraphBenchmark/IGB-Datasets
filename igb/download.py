@@ -8,14 +8,13 @@ GBFACTOR = float(1 << 30)
 def decide_download(url):
     d = ur.urlopen(url)
     size = int(d.info()["Content-Length"])/GBFACTOR
-
     ### confirm if larger than 1GB
     if size > 1:
         return input("This will download %.2fGB. Will you proceed? (y/N) " % (size)).lower() == "y"
     else:
         return True
     
-    
+
 dataset_urls = {
     'homogeneous' : {
         'tiny' : 'https://igb-public.s3.us-east-2.amazonaws.com/igb-homogeneous/igb_homogeneous_tiny.tar.gz',
@@ -44,8 +43,8 @@ md5checksums = {
 }
 
 
-def check_md5sum(args, filename):
-    original_md5 = md5checksums[args.dataset_type][args.dataset_size]
+def check_md5sum(dataset_type, dataset_size, filename):
+    original_md5 = md5checksums[dataset_type][dataset_size]
 
     with open(filename, 'rb') as file_to_check:
         data = file_to_check.read()    
@@ -59,16 +58,16 @@ def check_md5sum(args, filename):
         raise Exception(" md5sum verification failed!.")
         
 
-def download_dataset(args):
-    output_directory = args.path
-    url = dataset_urls[args.dataset_type][args.dataset_size]
+def download_dataset(path, dataset_type, dataset_size):
+    output_directory = path
+    url = dataset_urls[dataset_type][dataset_size]
     if decide_download(url):
         data = ur.urlopen(url)
         size = int(data.info()["Content-Length"])
         chunk_size = 1024*1024
         num_iter = int(size/chunk_size) + 2
         downloaded_size = 0
-        filename = args.path + "/igb_" + args.dataset_type + "_" + args.dataset_size + ".tar.gz"
+        filename = path + "/igb_" + dataset_type + "_" + dataset_size + ".tar.gz"
         with open(filename, 'wb') as f:
             pbar = tqdm(range(num_iter))
             for i in pbar:
@@ -76,8 +75,8 @@ def download_dataset(args):
                 downloaded_size += len(chunk)
                 pbar.set_description("Downloaded {:.2f} GB".format(float(downloaded_size)/GBFACTOR))
                 f.write(chunk) 
-    print("Downloaded" + Fore.GREEN + " igb_" + args.dataset_type + "_" + args.dataset_size + Style.RESET_ALL, end=" ->")
-    check_md5sum(args, filename)
+    print("Downloaded" + Fore.GREEN + " igb_" + dataset_type + "_" + dataset_size + Style.RESET_ALL, end=" ->")
+    check_md5sum(dataset_type, dataset_size, filename)
     destination = output_directory
     file = tarfile.open(filename)
     file.extractall(output_directory)
@@ -89,7 +88,7 @@ def download_dataset(args):
             size += os.path.getsize(fp)
     print("Final dataset size {:.2f} GB.".format(size/GBFACTOR))
     os.remove(filename)
-
+    
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -99,9 +98,8 @@ if __name__ == '__main__':
         choices=['homogeneous', 'heterogeneous'], 
         help='dataset type')
     parser.add_argument('--dataset_size', type=str, default='tiny',
-        choices=['tiny', 'small', 'medium', 'full'], 
+        choices=['tiny', 'small', 'medium'], 
         help='size of the datasets')
     args = parser.parse_args()    
-    download_dataset(args)
-    
+    download_dataset(args.path, args.dataset_type, args.dataset_size)
     
