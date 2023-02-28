@@ -30,7 +30,7 @@ Final dataset size 0.39 GB.
 ```
 The script downloads the zipped files from aws, does a md5sum check and extracts the folder in your specified path. Change the `dataset_type` to `"heterogeneous"` and `the dataset_size` to either `"small"` or `"medium"` in order to get the other datasets.
 
-In the current version if you want the download the `igb(h)-large` and `igb260m/igbh600m` please use the bash download scripts provided. 
+In the current version if you want the download the `igb(h)-large` and `igb260m/igbh600m` please use the bash download scripts provided. Please note these two large datasets require disk space over >500GB. 
 
 ## Abstract
 
