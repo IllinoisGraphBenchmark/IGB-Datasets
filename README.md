@@ -4,13 +4,6 @@
   <img width='60%' src='https://github.com/IllinoisGraphBenchmark/IGB260M-Datasets/blob/main/doc/figures/logo.png' />
 </p>
 
-## Get early access
-
-Please fill out this google form and we will respond back to you as soon as we can.
-
-```
-https://forms.gle/fXsipCvBKhmrdg2m6
-```
 
 ## Installation Guide
 
@@ -24,6 +17,20 @@ https://forms.gle/fXsipCvBKhmrdg2m6
 ```
 Now in order to get the dataloader you can: `from igb import dataloader`
 
+## Get access to dataset
+
+After you install the igb package in order to download `igb(h)-tiny`, `igb(h)-small`, `igb(h)-medium` please follow this code example.
+
+```python
+>>> from igb import download
+>>> download.download_dataset(path='/root/heterogeneous_dataset_gen/testing_downloads', dataset_type='homogeneous', dataset_size'tiny')
+Downloaded 0.36 GB: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████| 366/366 [00:03<00:00, 98.94it/s]
+Downloaded igb_homogeneous_tiny -> md5sum verified.
+Final dataset size 0.39 GB.
+```
+The script downloads the zipped files from aws, does a md5sum check and extracts the folder in your specified path. Change the `dataset_type` to `"heterogeneous"` and `the dataset_size` to either `"small"` or `"medium"` in order to get the other datasets.
+
+In the current version if you want the download the `igb(h)-large` and `igb260m/igbh600m` please use the bash download scripts provided. 
 
 ## Abstract
 
