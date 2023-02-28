@@ -151,6 +151,8 @@ Please check the [Contributions.md](Contributions.md) file for more details.
 1. We will be releasing raw text data for enabling NLP+GNN tasks. 
 2. Temporal graph datasets.
 
+If you have additional requests, please add them in the issues. 
+
 
 ## Citations
 
