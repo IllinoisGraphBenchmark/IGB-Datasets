@@ -136,6 +136,7 @@ To learn more about the hyperparameters please take a look at `train/train_multi
 Please read our paper in Arxiv. 
 
 ## Contributions
+
 Please check the [Contributions.md](Contributions.md) file for more details.
 
 ## Questions
@@ -152,7 +153,7 @@ If you have additional requests, please add them in the issues.
 
 
 ## Citations
-
+The work is done using the funds from IBM-Illinois Discovery Accelerator Institute and Amazon Research Awards and in collaboration with NVIDIA Research. 
 If you use datasets, please cite the below article.
 
 ```
