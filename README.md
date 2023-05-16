@@ -156,12 +156,14 @@ If you have additional requests, please add them in the issues.
 If you use datasets, please cite the below article.
 
 ```
-@misc{igbdatasets,
+@inproceedings{igbdatasets,
   doi = {10.48550/ARXIV.2302.13522},
   url = {https://arxiv.org/abs/2302.13522},
   author = {Khatua, Arpandeep and Mailthody, Vikram Sharma and Taleka, Bhagyashree and Ma, Tengfei and Song, Xiang and Hwu, Wen-mei},  
   title = {IGB: Addressing The Gaps In Labeling, Features, Heterogeneity, and Size of Public Graph Datasets for Deep Learning Research},
   year = {2023},
+  booktitle = {In Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '23)},
+  series = {KDD '23}
   copyright = {Creative Commons Attribution 4.0 International}
 }
 ```
