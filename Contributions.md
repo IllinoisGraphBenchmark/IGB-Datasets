@@ -22,3 +22,8 @@ This list describes the activities were are actively looking for collaborators t
 1. Setting up CI/CD pipelines 
 2. Adding GNN models apart from the ones that is currently provided. 
 3. Ranking
+
+
+### External Contributors List
+1. @Elnifio (train_multi_hetero.py)
+2. @kaixuanliu (fixes to the download script)
