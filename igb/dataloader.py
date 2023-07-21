@@ -191,13 +191,21 @@ class IGBHeteroDGLDataset(DGLDataset):
         if self.args.in_memory:
             paper_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
             'paper', 'node_feat.npy')))
-            paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
-            'paper', 'node_label_19.npy'))).to(torch.long)
+            if self.args.num_classes == 19:
+                paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+            'paper', 'node_label_19.npy'))).to(torch.long)  
+            else:
+                torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+            'paper', 'node_label_2K.npy'))).to(torch.long)
         else:
             paper_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
             'paper', 'node_feat.npy'), mmap_mode='r'))
-            paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+            if self.args.num_classes == 19:
+                paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
             'paper', 'node_label_19.npy'), mmap_mode='r')).to(torch.long)  
+            else:
+                paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+            'paper', 'node_label_2K.npy'), mmap_mode='r')).to(torch.long)                
 
         self.graph.nodes['paper'].data['feat'] = paper_node_features
         self.graph.num_paper_nodes = paper_node_features.shape[0]
@@ -318,20 +326,16 @@ class IGBHeteroDGLDatasetMassive(DGLDataset):
         fos_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
         'fos', 'node_feat.npy'), mmap_mode='r'))
         num_nodes_dict = {'paper': num_paper_nodes, 'author': num_author_nodes, 'institute': len(institute_node_features), 'fos': len(fos_node_features)}
-        print("Setting the graph structure")
         graph_data = {
             ('paper', 'cites', 'paper'): (paper_paper_edges[:, 0], paper_paper_edges[:, 1]),
             ('paper', 'written_by', 'author'): (author_paper_edges[:, 0], author_paper_edges[:, 1]),
             ('author', 'affiliated_to', 'institute'): (affiliation_author_edges[:, 0], affiliation_author_edges[:, 1]),
             ('paper', 'topic', 'fos'): (paper_fos_edges[:, 0], paper_fos_edges[:, 1])
         }
-        print("dgl.heterograph init starting")
         self.graph = dgl.heterograph(graph_data, num_nodes_dict)  
-        print("dgl.heterograph init successful")
         self.graph.predict = 'paper'
         self.graph = dgl.remove_self_loop(self.graph, etype='cites')
         self.graph = dgl.add_self_loop(self.graph, etype='cites')
-        print("line 327")
         self.graph.nodes['paper'].data['feat'] = paper_node_features
         self.graph.num_paper_nodes = paper_node_features.shape[0]
         self.graph.nodes['paper'].data['label'] = paper_node_labels
