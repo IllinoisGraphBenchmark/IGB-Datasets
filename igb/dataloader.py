@@ -396,7 +396,7 @@ if __name__ == '__main__':
     parser.add_argument('--synthetic', type=int, default=1,
         choices=[0, 1], help='0:nlp-node embeddings, 1:random')
     parser.add_argument('--all_in_edges', type=bool, default=True, 
-        help="Set to false to use default relation. False option to be removed.")
+        help="Set to false to use default relation. Set this option to True to use all the relation types in the dataset since DGL samplers require directed in edges.")
     args = parser.parse_args()
 
     dataset = IGBHeteroDGLDataset(args)
