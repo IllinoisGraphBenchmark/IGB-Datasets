@@ -179,25 +179,42 @@ class IGBHeteroDGLDataset(DGLDataset):
             paper_fos_edges = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
             'paper__topic__fos', 'edge_index.npy'), mmap_mode='r'))
 
-        graph_data = {
-            ('paper', 'cites', 'paper'): (paper_paper_edges[:, 0], paper_paper_edges[:, 1]),
-            ('paper', 'written_by', 'author'): (author_paper_edges[:, 0], author_paper_edges[:, 1]),
-            ('author', 'affiliated_to', 'institute'): (affiliation_author_edges[:, 0], affiliation_author_edges[:, 1]),
-            ('paper', 'topic', 'fos'): (paper_fos_edges[:, 0], paper_fos_edges[:, 1])
-        }
+
+        if self.args.all_in_edges:
+            graph_data = {
+                ('paper', 'cites', 'paper'): (paper_paper_edges[:, 0], paper_paper_edges[:, 1]),
+                ('author', 'written_by', 'paper'): (author_paper_edges[:, 1], author_paper_edges[:, 0]),
+                ('institute', 'affiliated_to', 'author'): (affiliation_author_edges[:, 1], affiliation_author_edges[:, 0]),
+                ('fos', 'topic', 'paper'): (paper_fos_edges[:, 1], paper_fos_edges[:, 0])
+            }
+        else:
+            graph_data = {
+                ('paper', 'cites', 'paper'): (paper_paper_edges[:, 0], paper_paper_edges[:, 1]),
+                ('paper', 'written_by', 'author'): (author_paper_edges[:, 0], author_paper_edges[:, 1]),
+                ('author', 'affiliated_to', 'institute'): (affiliation_author_edges[:, 0], affiliation_author_edges[:, 1]),
+                ('paper', 'topic', 'fos'): (paper_fos_edges[:, 0], paper_fos_edges[:, 1])
+            }
         self.graph = dgl.heterograph(graph_data)     
         self.graph.predict = 'paper'
 
         if self.args.in_memory:
             paper_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
             'paper', 'node_feat.npy')))
-            paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
-            'paper', 'node_label_19.npy'))).to(torch.long)
+            if self.args.num_classes == 19:
+                paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+            'paper', 'node_label_19.npy'))).to(torch.long)  
+            else:
+                torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+            'paper', 'node_label_2K.npy'))).to(torch.long)
         else:
             paper_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
             'paper', 'node_feat.npy'), mmap_mode='r'))
-            paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+            if self.args.num_classes == 19:
+                paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
             'paper', 'node_label_19.npy'), mmap_mode='r')).to(torch.long)  
+            else:
+                paper_node_labels = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+            'paper', 'node_label_2K.npy'), mmap_mode='r')).to(torch.long)                
 
         self.graph.nodes['paper'].data['feat'] = paper_node_features
         self.graph.num_paper_nodes = paper_node_features.shape[0]
@@ -265,7 +282,7 @@ class IGBHeteroDGLDatasetMassive(DGLDataset):
         super().__init__(name='IGB260M')
 
     def process(self):
-        if self.args.graph_in_memory:
+        if self.args.in_memory:
             paper_paper_edges = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
             'paper__cites__paper', 'edge_index.npy')))
             author_paper_edges = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
@@ -318,20 +335,16 @@ class IGBHeteroDGLDatasetMassive(DGLDataset):
         fos_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
         'fos', 'node_feat.npy'), mmap_mode='r'))
         num_nodes_dict = {'paper': num_paper_nodes, 'author': num_author_nodes, 'institute': len(institute_node_features), 'fos': len(fos_node_features)}
-        print("Setting the graph structure")
         graph_data = {
             ('paper', 'cites', 'paper'): (paper_paper_edges[:, 0], paper_paper_edges[:, 1]),
             ('paper', 'written_by', 'author'): (author_paper_edges[:, 0], author_paper_edges[:, 1]),
             ('author', 'affiliated_to', 'institute'): (affiliation_author_edges[:, 0], affiliation_author_edges[:, 1]),
             ('paper', 'topic', 'fos'): (paper_fos_edges[:, 0], paper_fos_edges[:, 1])
         }
-        print("dgl.heterograph init starting")
         self.graph = dgl.heterograph(graph_data, num_nodes_dict)  
-        print("dgl.heterograph init successful")
         self.graph.predict = 'paper'
         self.graph = dgl.remove_self_loop(self.graph, etype='cites')
         self.graph = dgl.add_self_loop(self.graph, etype='cites')
-        print("line 327")
         self.graph.nodes['paper'].data['feat'] = paper_node_features
         self.graph.num_paper_nodes = paper_node_features.shape[0]
         self.graph.nodes['paper'].data['label'] = paper_node_labels
@@ -369,23 +382,24 @@ class IGBHeteroDGLDatasetMassive(DGLDataset):
 
 
 
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--path', type=str, default='/root/gnndataset/', 
+    parser.add_argument('--path', type=str, default='/mnt/gnndataset', 
         help='path containing the datasets')
-    parser.add_argument('--dataset_size', type=str, default='large',
+    parser.add_argument('--dataset_size', type=str, default='tiny',
         choices=['tiny', 'small', 'medium', 'large', 'full'], 
         help='size of the datasets')
     parser.add_argument('--num_classes', type=int, default=19, 
         choices=[19, 2983], help='number of classes')
-    parser.add_argument('--in_memory', type=int, default=0, 
+    parser.add_argument('--in_memory', type=int, default=1, 
         choices=[0, 1], help='0:read only mmap_mode=r, 1:load into memory')
     parser.add_argument('--synthetic', type=int, default=1,
         choices=[0, 1], help='0:nlp-node embeddings, 1:random')
+    parser.add_argument('--all_in_edges', type=bool, default=True, 
+        help="Set to false to use default relation. Set this option to True to use all the relation types in the dataset since DGL samplers require directed in edges.")
     args = parser.parse_args()
 
-    dataset = IGBHeteroDGLDatasetMassive(args)
+    dataset = IGBHeteroDGLDataset(args)
     g = dataset[0]
     print(g)
     homo_g = dgl.to_homogeneous(g)
