@@ -12,7 +12,14 @@ import math
 class PyGSampler(dgl.dataloading.Sampler):
     r"""
     An example DGL sampler implementation that matches PyG/GLT sampler behavior. 
-    See issue https://github.com/alibaba/graphlearn-for-pytorch/issues/79 for the sampler difference with examples. 
+    The following differences need to be addressed: 
+    1.  PyG/GLT applies conv_i to edges in layer_i, and all subsequent layers, while DGL only applies conv_i to edges in layer_i. 
+        For instance, consider a path a->b->c. At layer 0, DGL updates only node b's embedding with a->b, but PyG/GLT updates both node b and c's embeddings.
+        Therefore, if we use h_i(x) to denote the hidden representation of node x at layer i, then the output h_2(c) is: 
+            DGL:     h_2(c) = conv_2(h_1(c), h_1(b)) = conv_2(h_0(c) + conv_1(h_0(b) + h_0(a)))
+            PyG/GLT: h_2(c) = conv_2(h_1(c), h_1(b)) = conv_2(conv_1(h_0(c) + h_0(b)) + conv_1(h_0(b) + h_0(a)))
+    2.  When creating blocks for layer i-1, DGL not only uses the destination nodes from layer i, but also includes all subsequent i+1 ... n layers' destination nodes as seed nodes.
+    More discussions and examples can be found here: https://github.com/alibaba/graphlearn-for-pytorch/issues/79. 
     """
     def __init__(self, fanouts):
         super().__init__()
