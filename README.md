@@ -118,18 +118,21 @@ We aim to improve these baselines by testing out more hyperparameters. *Models h
 
 We provide scripts to run the above models on mulitple GPUs using DGL and PyTorch methods. To test it out by running GCN on IGB-tiny with the default hyperparameters you can test it out using:
 
-```python
-python train_multi_gpu.py --model_type gcn --dataset_size tiny --num_classes 19 --gpu_devices 0,1,2,3
+```
+python train_multi_gpu.py --model_type gcn --dataset_size tiny --num_classes 19 --gpu_devices 0,1,2,3  #For homogenous
+python train_multi_hetero.py --model_type rgcn --dataset_size tiny --num_classes 19 --gpu_devices 0,1,2,3  #For heterogenous
 ```
 To try single GPU run use:
-```python
-python train_multi_gpu.py --model_type gcn --dataset_size tiny --num_classes 19 --gpu_devices 0
+``` 
+python train_multi_gpu.py --model_type gcn --dataset_size tiny --num_classes 19 --gpu_devices 0  #For homogenous
+python train_multi_hetero.py --model_type rgcn --dataset_size tiny --num_classes 19 --gpu_devices 0  #For heterogenous
 ```
-```python
+or
+``` 
 python train_single_gpu.py --model_type gcn --dataset_size tiny --num_classes 19
 ```
 
-To learn more about the hyperparameters please take a look at `train/train_multi_gpu.py`.
+To learn more about the hyperparameters please take a look at `train/train_multi_gpu.py` or `train/train_multi_hetero.py`.
 
 ## IGB Documentation
 

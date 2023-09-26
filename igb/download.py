@@ -82,7 +82,7 @@ def download_dataset(path, dataset_type, dataset_size):
     file.extractall(output_directory)
     file.close()
     size = 0
-    for path, dirs, files in os.walk(output_directory+"/"+args.dataset_size):
+    for path, dirs, files in os.walk(output_directory+"/"+dataset_size):
         for f in files:
             fp = os.path.join(path, f)
             size += os.path.getsize(fp)
