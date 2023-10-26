@@ -1,3 +1,9 @@
-# Results
+# Leaderboard [wip]
 
-This folder contains results of the runs that we performed. The results a bit outdated and will be updated in the coming days. 
+Welcome to the official leaderboard for the Illinois Graph Benchmark. This will help us keep track of the state of the art GNN models and encourage reproducibility. 
+
+## How to submit
+
+You can make your submission using this [Google form](https://forms.gle/h88sdFx173jHRkmb7).
+
+
