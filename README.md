@@ -5,6 +5,9 @@
 </p>
 
 
+## Official IGB Leadboard is now online!! 🎉
+Head over to the [leaderboard](https://github.com/IllinoisGraphBenchmark/IGB-Datasets/blob/leaderboard-creation/results/README.md#leaderboard-wip) and make your submission. 
+
 ## Installation Guide
 
 ```python
