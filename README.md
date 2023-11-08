@@ -32,6 +32,37 @@ The script downloads the zipped files from aws, does a md5sum check and extracts
 
 In the current version if you want the download the `igb(h)-large` and `igb260m/igbh600m` please use the bash download scripts provided. Please note these two large datasets require disk space over >500GB. 
 
+> Note: We have updated the paper embedding file of the full dataset. If you have downloaded the dataset prior to 7th November 2023 you will need to update to get the embeddings for the last ~5M paper nodes. To make the process easier so users don't have to re-download the 1TB paper embedding file please follow these steps to update the embedding in place.
+
+First download the embeddings using 
+```bash
+wget --recursive --no-parent https://igb-public.s3.us-east-2.amazonaws.com/IGBH/processed/paper/node_feat_5M_tail.npy
+```
+
+Then run this python script:
+```python
+import numpy as np
+from tqdm import tqdm
+# Open the paper embedding file in r+ mode (read/write)
+num_paper_nodes = 269346174
+paper_node_features = np.memmap('/mnt/raid0/full/processed/paper/node_feat.npy', dtype='float32', 
+                                mode='r+',  shape=(num_paper_nodes,1024))
+
+# Open the extra embedding file in read more    
+num_tail = 4957567
+node_feat_5M_tail = np.memmap('/mnt/raid0/full/processed/paper/node_feat_5M_tail.npy', dtype='float32', 
+                                mode='r',  shape=(4957567,1024))
+
+# Here we do it sequencially to log the progress. 
+# You can do it in parallel by paper_node_features[offset:] = node_feat_5M_tail
+offset = num_paper_nodes-num_tail
+for i in tqdm(range(num_tail)):
+    paper_node_features[i + offset] = node_feat_5M_tail[i]
+
+# flush to save to disk
+paper_node_features.flush()
+```
+
 ## Abstract
 Graph neural networks (GNNs) have shown high potential for a variety of real-world, challenging applications, but one of the major obstacles in GNN research is the lack of large-scale flexible datasets. Most existing public datasets for GNNs are relatively small, which limits the ability of GNNs to generalize to unseen data. The few existing large-scale graph datasets provide very limited labeled data. This makes it difficult to determine if the GNN model's low accuracy for unseen data is inherently due to insufficient training data or if the model failed to generalize. Additionally, datasets used to train GNNs need to offer flexibility to enable a thorough study of the impact of various factors while training GNN models.
 
