@@ -35,6 +35,7 @@ The script downloads the zipped files from aws, does a md5sum check and extracts
 
 In the current version if you want the download the `igb(h)-large` and `igb260m/igbh600m` please use the bash download scripts provided. Please note these two large datasets require disk space over >500GB. 
 
+### Important update: 
 > Note: We have updated the paper embedding file of the full dataset. If you have downloaded the dataset prior to 7th November 2023 you will need to update to get the embeddings for the last ~5M paper nodes. To make the process easier so users don't have to re-download the 1TB paper embedding file please follow these steps to update the embedding in place.
 
 First download the embeddings using 
@@ -205,3 +206,4 @@ If you use datasets, please cite the below article.
   copyright = {Creative Commons Attribution 4.0 International}
 }
 ```
+
