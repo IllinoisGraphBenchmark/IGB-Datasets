@@ -25,5 +25,5 @@ This list describes the activities were are actively looking for collaborators t
 
 
 ### External Contributors List
-1. @Elnifio (train_multi_hetero.py)
-2. @kaixuanliu (fixes to the download script)
+1. @Elnifio (NVIDIA) (train_multi_hetero.py, mlperf pyg/glt script)
+2. @kaixuanliu (Alibaba) (fixes to the download script)
