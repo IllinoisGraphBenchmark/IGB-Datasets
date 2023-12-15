@@ -61,13 +61,16 @@ def check_md5sum(dataset_type, dataset_size, filename):
 def download_dataset(path, dataset_type, dataset_size):
     output_directory = path
     url = dataset_urls[dataset_type][dataset_size]
-    if decide_download(url):
+    filename = path + "/igb_" + dataset_type + "_" + dataset_size + ".tar.gz"
+    # check if the dataset is already downloaded
+    if os.path.exists(filename):
+        print("Dataset already downloaded.")
+    elif decide_download(url):
         data = ur.urlopen(url)
         size = int(data.info()["Content-Length"])
         chunk_size = 1024*1024
         num_iter = int(size/chunk_size) + 2
         downloaded_size = 0
-        filename = path + "/igb_" + dataset_type + "_" + dataset_size + ".tar.gz"
         with open(filename, 'wb') as f:
             pbar = tqdm(range(num_iter))
             for i in pbar:
@@ -75,7 +78,7 @@ def download_dataset(path, dataset_type, dataset_size):
                 downloaded_size += len(chunk)
                 pbar.set_description("Downloaded {:.2f} GB".format(float(downloaded_size)/GBFACTOR))
                 f.write(chunk) 
-    print("Downloaded" + Fore.GREEN + " igb_" + dataset_type + "_" + dataset_size + Style.RESET_ALL, end=" ->")
+        print("Downloaded" + Fore.GREEN + " igb_" + dataset_type + "_" + dataset_size + Style.RESET_ALL, end=" ->")
     check_md5sum(dataset_type, dataset_size, filename)
     destination = output_directory
     file = tarfile.open(filename)
