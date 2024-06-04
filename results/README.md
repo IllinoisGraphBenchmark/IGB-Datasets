@@ -4,7 +4,7 @@ Welcome to the official leaderboard for the Illinois Graph Benchmark. This will 
 
 ## How to submit
 
-You can make your submission using this [Google form](https://forms.gle/h88sdFx173jHRkmb7).
+You can make your submission using this [Google form](https://forms.gle/h88sdFx173jHRkmb7). After submitting the form, create a PR request to the repo and we will review and merge. 
 
 ### Illinois Graph Benchmark - Heterogeneous (IGB-HET) Leaderboard
 | Rank | Method | Test Accuracy | Contact | Date | References |
