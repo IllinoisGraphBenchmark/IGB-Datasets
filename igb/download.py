@@ -58,7 +58,7 @@ def check_md5sum(dataset_type, dataset_size, filename):
         raise Exception(" md5sum verification failed!.")
         
 
-def download_dataset(path, dataset_type, dataset_size, confirm_download):
+def download_dataset(path, dataset_type, dataset_size, confirm_download=False):
     output_directory = path
     url = dataset_urls[dataset_type][dataset_size]
     filename = path + "/igb_" + dataset_type + "_" + dataset_size + ".tar.gz"
