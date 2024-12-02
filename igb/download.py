@@ -106,6 +106,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--confirm-download",
         action="store_true",
+        default=False,
         help="To skip the user prompt for confirming the download, which is useful for Docker detached mode.")
     args = parser.parse_args()    
     download_dataset(args.path, args.dataset_type, args.dataset_size, args.confirm_download)
