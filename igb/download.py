@@ -2,6 +2,7 @@ import argparse, tarfile, hashlib, os, requests
 from colorama import Fore, Back, Style
 from tqdm import tqdm
 import urllib.request as ur
+import os
 
 GBFACTOR = float(1 << 30)
 
@@ -9,7 +10,7 @@ def decide_download(url):
     d = ur.urlopen(url)
     size = int(d.info()["Content-Length"])/GBFACTOR
     ### confirm if larger than 1GB
-    if size > 1:
+    if size > 1 and os.environ.get('SKIP_USER_PROMPT', '').lower() not in [ "yes", "1", "true" ]:
         return input("This will download %.2fGB. Will you proceed? (y/N) " % (size)).lower() == "y"
     else:
         return True
