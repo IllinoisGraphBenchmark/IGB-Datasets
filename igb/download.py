@@ -10,7 +10,7 @@ def decide_download(url):
     d = ur.urlopen(url)
     size = int(d.info()["Content-Length"])/GBFACTOR
     ### confirm if larger than 1GB
-    if size > 1 and os.environ.get('SKIP_USER_PROMPT', '').lower() not in [ "yes", "1", "true" ]:
+    if size > 1:
         return input("This will download %.2fGB. Will you proceed? (y/N) " % (size)).lower() == "y"
     else:
         return True
@@ -66,7 +66,7 @@ def download_dataset(path, dataset_type, dataset_size):
     # check if the dataset is already downloaded
     if os.path.exists(filename):
         print("Dataset already downloaded.")
-    elif decide_download(url):
+    elif os.environ.get('SKIP_USER_PROMPT', '').lower() in [ "yes", "1", "true" ] or decide_download(url):
         data = ur.urlopen(url)
         size = int(data.info()["Content-Length"])
         chunk_size = 1024*1024
