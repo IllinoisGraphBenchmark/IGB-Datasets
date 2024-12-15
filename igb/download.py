@@ -59,14 +59,14 @@ def check_md5sum(dataset_type, dataset_size, filename):
         raise Exception(" md5sum verification failed!.")
         
 
-def download_dataset(path, dataset_type, dataset_size):
+def download_dataset(path, dataset_type, dataset_size, confirm_download=False):
     output_directory = path
     url = dataset_urls[dataset_type][dataset_size]
     filename = path + "/igb_" + dataset_type + "_" + dataset_size + ".tar.gz"
     # check if the dataset is already downloaded
     if os.path.exists(filename):
         print("Dataset already downloaded.")
-    elif os.environ.get('SKIP_USER_PROMPT', '').lower() in [ "yes", "1", "true" ] or decide_download(url):
+    elif confirm_download or os.environ.get('SKIP_USER_PROMPT', '').lower() in [ "yes", "1", "true" ] or decide_download(url):
         data = ur.urlopen(url)
         size = int(data.info()["Content-Length"])
         chunk_size = 1024*1024
@@ -104,6 +104,11 @@ if __name__ == '__main__':
     parser.add_argument('--dataset_size', type=str, default='tiny',
         choices=['tiny', 'small', 'medium'], 
         help='size of the datasets')
+    parser.add_argument(
+        "--confirm-download",
+        action="store_true",
+        default=False,
+        help="To skip the user prompt for confirming the download, which is useful for Docker detached mode.")
     args = parser.parse_args()    
-    download_dataset(args.path, args.dataset_type, args.dataset_size)
+    download_dataset(args.path, args.dataset_type, args.dataset_size, args.confirm_download)
     
