@@ -2,6 +2,7 @@ import argparse, tarfile, hashlib, os, requests
 from colorama import Fore, Back, Style
 from tqdm import tqdm
 import urllib.request as ur
+import os
 
 GBFACTOR = float(1 << 30)
 
@@ -65,7 +66,7 @@ def download_dataset(path, dataset_type, dataset_size, confirm_download=False):
     # check if the dataset is already downloaded
     if os.path.exists(filename):
         print("Dataset already downloaded.")
-    elif confirm_download or decide_download(url):
+    elif confirm_download or os.environ.get('SKIP_USER_PROMPT', '').lower() in [ "yes", "1", "true" ] or decide_download(url):
         data = ur.urlopen(url)
         size = int(data.info()["Content-Length"])
         chunk_size = 1024*1024
