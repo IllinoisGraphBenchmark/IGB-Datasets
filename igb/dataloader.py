@@ -135,10 +135,12 @@ class IGB260MDGLDataset(DGLDataset):
             train_mask = torch.zeros(n_nodes, dtype=torch.bool)
             val_mask = torch.zeros(n_nodes, dtype=torch.bool)
             test_mask = torch.zeros(n_nodes, dtype=torch.bool)
-            
-            train_mask[:n_train] = True
-            val_mask[n_train:n_train + n_val] = True
-            test_mask[n_train + n_val:] = True
+
+            perm = torch.randperm(n_nodes)
+
+            train_mask[perm[:n_train]] = True
+            val_mask[perm[n_train:n_train + n_val]] = True
+            test_mask[perm[n_train + n_val:]] = True
             
             self.graph.ndata['train_mask'] = train_mask
             self.graph.ndata['val_mask'] = val_mask
@@ -258,9 +260,12 @@ class IGBHeteroDGLDataset(DGLDataset):
         val_mask = torch.zeros(n_nodes, dtype=torch.bool)
         test_mask = torch.zeros(n_nodes, dtype=torch.bool)
         
-        train_mask[:n_train] = True
-        val_mask[n_train:n_train + n_val] = True
-        test_mask[n_train + n_val:] = True
+        perm = torch.randperm(n_nodes)
+
+        train_mask[perm[:n_train]] = True
+        val_mask[perm[n_train:n_train + n_val]] = True
+        test_mask[perm[n_train + n_val:]] = True
+
         
         self.graph.nodes['paper'].data['train_mask'] = train_mask
         self.graph.nodes['paper'].data['val_mask'] = val_mask
@@ -334,13 +339,27 @@ class IGBHeteroDGLDatasetMassive(DGLDataset):
         'institute', 'node_feat.npy'), mmap_mode='r'))
         fos_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
         'fos', 'node_feat.npy'), mmap_mode='r'))
-        num_nodes_dict = {'paper': num_paper_nodes, 'author': num_author_nodes, 'institute': len(institute_node_features), 'fos': len(fos_node_features)}
+        journal_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+        'journal', 'node_feat.npy'), mmap_mode='r'))
+        conference_node_features = torch.from_numpy(np.load(osp.join(self.dir, self.args.dataset_size, 'processed', 
+        'conference', 'node_feat.npy'), mmap_mode='r'))
+
+        num_nodes_dict = {'paper': num_paper_nodes, 'author': num_author_nodes, 'institute': len(institute_node_features), 'fos': len(fos_node_features), 'journal': len(journal_node_features), 'conference': len(conference_node_features)  }
         graph_data = {
             ('paper', 'cites', 'paper'): (paper_paper_edges[:, 0], paper_paper_edges[:, 1]),
             ('paper', 'written_by', 'author'): (author_paper_edges[:, 0], author_paper_edges[:, 1]),
             ('author', 'affiliated_to', 'institute'): (affiliation_author_edges[:, 0], affiliation_author_edges[:, 1]),
-            ('paper', 'topic', 'fos'): (paper_fos_edges[:, 0], paper_fos_edges[:, 1])
+            ('paper', 'topic', 'fos'): (paper_fos_edges[:, 0], paper_fos_edges[:, 1]),
+            ('paper', 'rev_cites', 'paper'): (paper_paper_edges[:, 1], paper_paper_edges[:, 0]),
+            ('author', 'rev_written_by', 'paper'): (author_paper_edges[:, 1], author_paper_edges[:, 0]),
+            ('institute', 'rev_affiliated_to', 'author'): (affiliation_author_edges[:, 1], affiliation_author_edges[:, 0]),
+            ('fos', 'rev_topic', 'paper'): (paper_fos_edges[:, 1], paper_fos_edges[:, 0]),
+            ('paper', 'published', 'journal'): (paper_published_journal[:, 0], paper_published_journal[:, 1]),
+            ('paper', 'venue', 'conference'): (paper__venue__conference[:, 0], paper__venue__conference[:, 1]),
+            ('journal', 'rev_published', 'paper'): (paper_published_journal[:, 1], paper_published_journal[:, 0]),
+            ('conference', 'rev_venue', 'paper'): (paper__venue__conference[:, 1], paper__venue__conference[:, 0])
         }
+        
         self.graph = dgl.heterograph(graph_data, num_nodes_dict)  
         self.graph.predict = 'paper'
         self.graph = dgl.remove_self_loop(self.graph, etype='cites')
@@ -366,9 +385,11 @@ class IGBHeteroDGLDatasetMassive(DGLDataset):
         val_mask = torch.zeros(n_nodes, dtype=torch.bool)
         test_mask = torch.zeros(n_nodes, dtype=torch.bool)
         
-        train_mask[:n_train] = True
-        val_mask[n_train:n_train + n_val] = True
-        test_mask[n_train + n_val:] = True
+        perm = torch.randperm(n_nodes)
+
+        train_mask[perm[:n_train]] = True
+        val_mask[perm[n_train:n_train + n_val]] = True
+        test_mask[perm[n_train + n_val:]] = True
         
         self.graph.nodes['paper'].data['train_mask'] = train_mask
         self.graph.nodes['paper'].data['val_mask'] = val_mask
